@@ -12,8 +12,7 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <script>
-                    
+        <script>            
         window.addEventListener('DOMContentLoaded', event => {
         // Toggle the side navigation
         const sidebarToggle = document.body.querySelector('#sidebarToggle');
@@ -30,7 +29,119 @@
         }
         });
         </script>
+        <!--달력-->
+        <script src='dist/index.global.js'></script>
+<script>
 
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      initialDate: '2023-01-12',
+      navLinks: true, // can click day/week names to navigate views
+      selectable: true,
+      selectMirror: true,
+      select: function(arg) {
+        var title = prompt('Event Title:');
+        if (title) {
+          calendar.addEvent({
+            title: title,
+            start: arg.start,
+            end: arg.end,
+            allDay: arg.allDay
+          })
+        }
+        calendar.unselect()
+      },
+      eventClick: function(arg) {
+        if (confirm('Are you sure you want to delete this event?')) {
+          arg.event.remove()
+        }
+      },
+      editable: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2023-01-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2023-01-07',
+          end: '2023-01-10'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2023-01-09T16:00:00'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2023-01-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2023-01-11',
+          end: '2023-01-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2023-01-12T10:30:00',
+          end: '2023-01-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2023-01-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2023-01-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2023-01-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2023-01-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2023-01-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2023-01-28'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+
+</script>
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 1000px;
+    margin: 50px;
+  }
+
+</style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -129,9 +240,7 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main>
-                    
-                   
+                <main>       
                     <style>
                         main{
                             background-image: 
@@ -145,7 +254,6 @@
                             height: 2000px;
                         }
                     </style>
-                    
                     <div id="output"></div>
                     <!--리뷰 택스트-->
                     <div class="container border-bottom border-danger" id="review_title">
@@ -172,51 +280,90 @@
                                 
                             }
                             .btn {
-                                min-width: 200px; /* 최소 가로 크기를 200px로 설정 */
+                                min-width: 150px; /* 최소 가로 크기를 200px로 설정 */
                                 cursor: pointer; /* 커서 스타일 설정 */
                                 max-width: 350px;
+                            }
+                            .content {
+                                display: none; /* 기본적으로 숨김 처리 */
+                            }
+                            .content.active {
+                                display: block; /* 활성화된 콘텐츠만 표시 */
                             }
                         </style>
                         
                         <div id="review_group_button_container">
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="btnradio1" onclick="changeContent(1)">스케줄</label>
+                                <label class="btn btn-outline-primary" for="btnradio1" onclick="showContent(1)">스케줄</label>
                         
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio2" onclick="changeContent(2)">예약 정보</label>
+                                <label class="btn btn-outline-primary" for="btnradio2" onclick="showContent(2)">예약 정보</label>
                         
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio3" onclick="changeContent(3)">개인정보</label>
+                                <label class="btn btn-outline-primary" for="btnradio3" onclick="showContent(3)">구매 내역</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio4" onclick="showContent(4)">개인정보</label>
                             </div>
                         </div>
                     </div>
 
-                    <div id="content">
-                        <!-- 초기 컨텐츠 -->
-                        초기 컨텐츠
+                    <div id="content1" class="content active">
+                        <!-- 스케줄 (점포의 트레이너 스케줄을 읽어들이고 출력할수 있어야 한다.) -->
+                        <div class="row justify-content-center" id="review-content-row">
+                            <style>
+                                #calendar-sideContents{
+                                    max-width: 350px;
+                                    padding-top: 50px;
+                                    padding-bottom: 50px;
+                                    
+                                }
+                                #review-content-row{
+                                    text-align: center;
+                                    
+                                }
+                            </style>
+                            <div class="col" id='calendar'></div>
+                            <div class="col" id="calendar-sideContents" style="display: flex; flex-direction: column;">
+                                <!-- 위 => 출결현황,하 => 문의 전화 -->
+                                <div class="container rounded border border-primary border-dashed" style="flex: 1; margin: 10px;">
+                                    출결 현황
+                                </div>
+                                <div class="container rounded border border-primary border-dashed" style="flex: 1; margin: 10px;">
+                                    문의 전화
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content2" class="content">
+                        <!-- 예약 정보 -->
+                        <p>This is Content 2.</p>
+                    </div>
+                    <div id="content3" class="content">
+                        <!-- 구매 내역 -->
+                        <p>This is Content 3.</p>
+                    </div>
+                    <div id="content4" class="content">
+                        <!-- 개인 정보 -->
+                        <p>This is Content 3.</p>
                     </div>
                     
+                    
                     <script>
-                        // 버튼이 클릭될 때 호출되는 함수
-                        function changeContent(index) {
-                            var contentElement = document.getElementById("content");
-                            // 각 버튼에 대한 컨텐츠를 설정
-                            switch(index) {
-                                case 1:
-                                    contentElement.innerHTML = "Radio 1이 선택되었습니다.";
-                                    break;
-                                case 2:
-                                    contentElement.innerHTML = "Radio 2가 선택되었습니다.";
-                                    break;
-                                case 3:
-                                    contentElement.innerHTML = "Radio 3이 선택되었습니다.";
-                                    break;
-                                default:
-                                    contentElement.innerHTML = "컨텐츠를 표시할 수 없습니다.";
-                            }
+                        // 버튼 클릭 시 호출되는 함수
+                        function showContent(index) {
+                            // 모든 콘텐츠 숨김 처리
+                            var contents = document.querySelectorAll('.content');
+                            contents.forEach(function(content) {
+                                content.classList.remove('active');
+                            });
+                            // 클릭된 버튼에 해당하는 콘텐츠만 활성화
+                            var contentToShow = document.getElementById('content' + index);
+                            contentToShow.classList.add('active');
                         }
                     </script>
+                    
                    
                    
                     
