@@ -1,12 +1,18 @@
 <!-- ProPageBody.jsp -->
 <!-- 프로그램페이지의 바디 부분 -->
+<%@page import="jeongJiYoon.UserMgr"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="jeongJiYoon.TrainerMgr, jeongJiYoon.TrainerBean" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>헬스장 홈페이지</title>
+    
+    <!-- 부트스트랩 CDN 추가 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
         body, html {
@@ -34,19 +40,14 @@
         }
         
         .text2 {
-	    text-align: center;
-	    font-size: 20px;
-	    margin-top: 20px;
-	    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
+		    text-align: center;
+		    font-size: 20px;
+		    margin-top: 20px;
+		    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
 		}
 		
 		.text2 span {
 		    margin: 0 10px; /* 좌우 여백 조정 */
-		}
-		
-		/* 추가적인 스타일링 */
-		.text2 p {
-		    margin: 10px 0;
 		}
         
         .text3 {
@@ -100,7 +101,7 @@
 
 <body> 
     <!-- Program 텍스트 -->
-    <div style="text-align: center; font-weight: bold; font-size: 50px; class="text1">
+    <div style="text-align: center; font-weight: bold; font-size: 50px;" class="text1">
         Program
     </div>
     
@@ -109,69 +110,61 @@
     <!-- 드롭다운 메뉴 -->
 	<div style="margin-top: 20px; margin-left: 200px; margin-bottom: 100px;">
 	    <select name="DropdownBox" onchange="handleChange(this.value)">
-	        <option value="option1">서울 ㅇㅇ피트니스 ㄱㄱ점</option>
-	        <option value="option2">서울 ㅇㅇ피트니스 ㄴㄴ점</option>
-	        <option value="option3">부산 ㅇㅇ피트니스 ㄷㄷ점</option>
+	        <option value="1">서울 ㅇㅇ피트니스 ㄱㄱ점</option>
+	        <option value="2">서울 ㅇㅇ피트니스 ㄴㄴ점</option>
+	        <option value="3">부산 ㅇㅇ피트니스 ㄷㄷ점</option>
 	    </select>
 	</div>
     
-	<div style="display: flex; justify-content: space-between; width: 80%; margin: 0 auto;">
-    <!-- 첫 번째 그룹 -->
-    <div class="trainer-group">
-        <img src="img/UI-UW-03(1).jpg" alt="Trainer 1" style="width: 450px; height: 600px; margin-bottom: 30px;">
-        <div class="trainer-info" style="text-align: center;">
-            <span style="font-weight: bold; font-size: 40px;">김안나</span>
-            <span style="font-size: 30px;">트레이너</span>
-            <br></br>
-            <span style="font-size: 18px;">
-                <p>생활 스포츠지도사 2급</p>
-                <p>한국 피트니스 지도자</p>
-                <p>스포츠 마사지 1급</p>
-                <p>컨디셔닝 케어 스페셜리스트</p>
-                <p>응급처치 심폐소생술 강사</p>
-            </span>
-        </div>
-    </div>
-
-    <!-- 두 번째 그룹 -->
-    <div class="trainer-group">
-        <img src="img/UI-UW-03(2).jpg" alt="Trainer 2" style="width: 450px; height: 600px; margin-bottom: 30px;">
-        <div class="trainer-info" style="text-align: center;">
-            <span style="font-weight: bold; font-size: 40px;">폴 킴</span>
-            <span style="font-size: 30px;">트레이너</span>
-            <br></br>
-            <span style="font-size: 18px;">
-                <p>생활 스포츠지도사 2급</p>
-                <p>한국 피트니스 지도자</p>
-                <p>스포츠 마사지 1급</p>
-                <p>컨디셔닝 케어 스페셜리스트</p>
-                <p>응급처치 심폐소생술 강사</p>
-            </span>
-        </div>
-    </div>
-
-    <!-- 세 번째 그룹 -->
-    <div class="trainer-group">
-        <img src="img/UI-UW-03(3).jpg" alt="Trainer 3" style="width: 450px; height: 600px; margin-bottom: 30px;">
-        <div class="trainer-info" style="text-align: center;">
-            <span style="font-weight: bold; font-size: 40px;">안나 리</span>
-            <span style="font-size: 30px;">트레이너</span>
-            <br></br>
-            <span style="font-size: 18px;">
-                <p>생활 스포츠지도사 2급</p>
-                <p>한국 피트니스 지도자</p>
-                <p>스포츠 마사지 1급</p>
-                <p>컨디셔닝 케어 스페셜리스트</p>
-                <p>응급처치 심폐소생술 강사</p>
-            </span>
-        </div>
-    </div>
-</div>
-
-	<!-- 상담예약 버튼 -->
-    <div style="text-align: center;">
-        <a href="#" class="btn">상담예약</a>
-    </div>
-    
-</body>
+	<div class="row justify-content-md-center" style=" justify-content: space-between; width: 80%; margin: 0 auto;">
+	    <% 
+	        TrainerMgr trainerMgr = new TrainerMgr();
+	        List<TrainerBean> trainers = trainerMgr.getAllTrainers();
+	        UserMgr userMgr = new UserMgr();
+	        for (int i = 0; i < trainers.size(); i++) {
+	            TrainerBean trainer = trainers.get(i);
+	            String trainerName = userMgr.getUserName(trainer.getUser());
+	            String trainerCareer = trainerMgr.getTrainerCareer(trainer.getNum());
+	            String displayStyle = i < 3 ? "flex" : "none"; // 첫 3개는 첫 번째 줄에 표시, 그 외는 숨김
+	            int frnum = trainerMgr.getTrainerFrnum(trainer.getNum()); // 트레이너가 속한 지점 번호
+	    %>
+	        <div class="col trainer-group" id="trainer-group<%=i+1%>" style="display: <%=displayStyle%>;" data-frnum="<%=trainerMgr.getTrainerFrnum(trainer.getNum())%>">
+	            <img src="<%=trainer.getImgpath()%>" alt="Trainer Image" style="width: 450px; height: 600px; margin-bottom: 30px;">
+	            <div style="display: inline-block;">
+	                <span style="font-size: 40px; font-weight: bold;"><%=trainerName%></span> <!-- 트레이너 이름 출력 및 스타일 -->
+	                <span style="font-size: 30px;">트레이너</span>
+	            </div>
+	            <br></br>
+	            <span style="font-size: 20px;"><%=trainerCareer%></span> <!-- 트레이너 경력 출력 및 스타일 -->
+	        </div>
+	    <%}%>
+	</div>
+	
+		<!-- 상담예약 버튼 -->
+	    <div style="text-align: center;">
+	        <a href="#" class="btn">상담예약</a>
+	    </div>
+	
+	    <script>
+	 	// 페이지가 로드될 때 초기 선택값 설정
+	    document.addEventListener("DOMContentLoaded", function() {
+	        var dropdown = document.querySelector('select[name="DropdownBox"]');
+	        dropdown.value = "1";
+	        handleChange("1");
+	    });
+	
+	 	// 드롭다운 메뉴에서 옵션 변경 시 해당 그룹 이미지만 표시
+	    function handleChange(selectedValue) {
+	        var groups = document.querySelectorAll('.trainer-group');
+	        for (var i = 0; i < groups.length; i++) {
+	            var frnum = parseInt(groups[i].getAttribute('data-frnum')); // 트레이너가 속한 지점 번호
+	            if (frnum == selectedValue) {
+	                groups[i].style.display = 'flex';
+	            } else {
+	                groups[i].style.display = 'none';
+	            }
+	        }
+	    }
+		</script>
+	</body>
 </html>

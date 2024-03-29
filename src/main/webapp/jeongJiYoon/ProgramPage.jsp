@@ -12,6 +12,6 @@
 <body>
     <%@ include file="Header.jsp" %> <!-- 헤더 include -->
     <%@ include file="ProPageBody.jsp" %> <!-- 바디 include -->
-    <%@ include file="Footer.jsp" %> <!-- 풋터 include --> 
+    <%@ include file="Footer.jsp" %> <!-- 풋터 include -->
 </body>
 </html>
