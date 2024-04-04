@@ -8,7 +8,7 @@
 <body class="allstyles">
     <div class="wrap vertical_center">
         <div class="logo_wrap">
-            <img src="img/logo.png" alt="로고" class="img_logo">
+            <a href="index.jsp"><img src="img/logo.png" alt="로고" class="img_logo"></a>
         </div><!--logo_wrap-->
 
         <div class="input_wrap">
@@ -29,7 +29,7 @@
 	                </div>
 	
 	                <input type = "submit" class="allcenter btn_login" value = "로그인">
-	                <div style="margin-top: 5px;"><a href="#" class="text_link">회원가입</a></div>
+	                <div style="margin-top: 5px;"><a href="join.jsp" class="text_link">회원가입</a></div>
                 </form>
             </div><!--login_wrap-->
         </div><!--input_wrap-->

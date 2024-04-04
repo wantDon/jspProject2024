@@ -5,10 +5,11 @@ public class UserBean {
 	String id;
 	String pwd;
 	String name;
-	boolean gender;
+	int gender;
 	String birth;
 	String email;
 	String postnum;
+	String phone;
 	String city;
 	String streetaddr;
 	String joindate;
@@ -19,7 +20,6 @@ public class UserBean {
 	int authority;
 	int company;
 	int frnum;
-	
 	
 	public int getNum() {
 		return num;
@@ -45,10 +45,10 @@ public class UserBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isGender() {
+	public int getGender() {
 		return gender;
 	}
-	public void setGender(boolean gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 	public String getBirth() {
@@ -68,6 +68,12 @@ public class UserBean {
 	}
 	public void setPostnum(String postnum) {
 		this.postnum = postnum;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getCity() {
 		return city;
@@ -130,8 +136,5 @@ public class UserBean {
 		this.frnum = frnum;
 	}
 	
+	
 }
-
-
-
-

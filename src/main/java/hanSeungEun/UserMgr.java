@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import hanSeungEun.UserBean;
+
 public class UserMgr {
 
 	private DBConnectionMgr pool;
@@ -59,6 +61,33 @@ public class UserMgr {
 				e.printStackTrace();
 			} finally {
 				pool.freeConnection(con, pstmt, rs);
+			}
+			return flag;
+		}
+		
+		
+		//회원가입
+		public boolean insertMember(UserBean bean) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			boolean flag = false;
+			try {
+				con = pool.getConnection();
+				sql = "insert into user (id, pwd, name, gender, birth, email, phone) values(?,?,?,?,?,?,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, bean.getId());
+				pstmt.setString(2, bean.getPwd());
+				pstmt.setString(3, bean.getName());
+				pstmt.setInt(4, bean.getGender());
+				pstmt.setString(5, bean.getBirth());
+				pstmt.setString(6, bean.getEmail());
+				pstmt.setString(7, bean.getPhone());
+				if(pstmt.executeUpdate()==1) flag = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt);
 			}
 			return flag;
 		}
