@@ -8,7 +8,7 @@
 <body class="allstyles">
     <div class="wrap vertical_center">
         <div class="logo_wrap">
-            <a href="index.jsp"><img src="img/logo.png" alt="로고" class="img_logo"></a>
+            <a href="index.jsp"><img src="../img/logo.png" alt="로고" class="img_logo"></a>
         </div><!--logo_wrap-->
 
         <div class="input_wrap">
@@ -23,9 +23,9 @@
 	                <p class="social_text">개인정보 보호를 위해 공용 PC에서 사용 후 SNS 계정의 로그아웃 상태를 반드시 확인해주세요.</p>
 	
 	                <div class="allcenter social_list">
-	                    <a href="#" class="social_list_1"><img src="img/icon_naver.png" alt="네이버"></a>
-	                    <a href="#" class="social_list_1"><img src="img/icon_kakao.png" alt="카카오"></a>
-	                    <a href="#" class="social_list_1"><img src="img/icon_google.png" alt="구글"></a>
+	                    <a href="#" class="social_list_1"><img src="../img/icon_naver.png" alt="네이버"></a>
+	                    <a href="#" class="social_list_1"><img src="../img/icon_kakao.png" alt="카카오"></a>
+	                    <a href="#" class="social_list_1"><img src="../img/icon_google.png" alt="구글"></a>
 	                </div>
 	
 	                <input type = "submit" class="allcenter btn_login" value = "로그인">

@@ -18,7 +18,7 @@ function inputCheck(){
 	}
 	if(document.joinFrm.birth.value==""){
 		alert("생년월일을 입력해 주세요.");
-		document.joinFrm.birthday.focus();
+		document.joinFrm.birth.focus();
 		return;
 	}
 	if(document.joinFrm.email.value==""){
@@ -43,14 +43,10 @@ function inputCheck(){
     }
 
 	if(document.joinFrm.phone.value==""){
-		alert("이메일을 입력해 주세요.");
+		alert("휴대번호를 입력해 주세요.");
 		document.joinFrm.phone.focus();
 		return;
 	}
-
-	document.joinFrm.submit();
-}
-
-function win_close(){
-	self.close();
+document.joinFrm.submit();
+	
 }

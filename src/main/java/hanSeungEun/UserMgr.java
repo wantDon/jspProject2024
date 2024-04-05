@@ -52,7 +52,7 @@ public class UserMgr {
 			boolean flag  = false;
 			try {
 				con = pool.getConnection();
-				sql = "select id from user where id=?";
+				sql = "select id from user where id= ? ";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();//sql문 실행

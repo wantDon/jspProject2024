@@ -4,7 +4,7 @@
 <jsp:setProperty property="*" name="bean"/>
 <% 
 	boolean result = Umgr.insertMember(bean);
-	String msg = "가입에 실패하였습니다 \n 다시 시도해주세요.";
+	String msg = "가입에 실패하였습니다." ;
 	String location = "join.jsp";
 	if(result){
 		msg = "가입을 축하합니다.";
