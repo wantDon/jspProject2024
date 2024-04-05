@@ -1,5 +1,6 @@
 
 function inputCheck(){
+	
 	if(document.joinFrm.id.value==""){
 		alert("아이디를 입력해 주세요.");
 		document.joinFrm.id.focus();

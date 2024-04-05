@@ -8,7 +8,7 @@
 	String location = "join.jsp";
 	if(result){
 		msg = "가입을 축하합니다.";
-		location = "login.jsp";
+		location = "login/login.jsp";
 	}
 %>
 <script type = "text/javascript">

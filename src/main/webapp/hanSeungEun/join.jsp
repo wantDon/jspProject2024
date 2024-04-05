@@ -1,9 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:useBean id="Umgr" class = "hanSeungEun.UserMgr"/> <!--db 연동을 위해 작성 -->
-<% 
-	String id = request.getParameter("id");
-	boolean result = Umgr.checkId(id);
-%>
+
 <!doctype html>
 <html>
 <head>
@@ -11,38 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="join.css">
     <title>회원가입</title>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
-	<script type="text/javascript">
-	
-		function idCheck(id) {
-			if(id==""){
-				alert("아이디를 입력하세요.");
-				document.joinFrm.id.focus();
-				return;//이후에 코드를 실행이 안됨. 함수를 빠져나감.
-			}
-			var alertDiv = document.getElementById("idCheck_alert");
-			if (id === "true") {
-                alertDiv.innerHTML = "<b>" + id + "</b>는 이미 존재하는 ID입니다.";
-            } else {
-                alertDiv.innerHTML = "<b>" + id + "</b>는 사용 가능합니다.";
-            }
-		}
-	</script>
-	
 </head>
 
 <body class="allstyles vertical_center" onLoad="joinFrm.id.focus()">
     <div class="wrap center ">
         <div class="logo_wrap">
-            <a href="index.jsp"><img src="../img/logo.png" alt="로고" class="img_logo"></a>
+            <a href="index.jsp"><img src="img/logo.png" alt="로고" class="img_logo"></a>
         </div><!--logo_wrap-->
-       <form name="joinFrm" method="post" action="userProc.jsp" onsubmit="return false;">
+       <form name="joinFrm" method="post" action="userProc.jsp">
             <div class="inner center">
                 <label>아이디</label>
-                <input name="id" placeholder="아이디">
-                <button type="button" onClick="idCheck(this.form.id.value)">중복</button>
-                <div class="idCheck_alert" id="idCheck_alert">
+                <input name="id" id="input_id" placeholder="아이디">
+                <button type="button" id="Check">중복</button>
+                <div class="idCheck_alert" id = "checkId">
 				</div>
                 <label>비밀번호</label>
                 <input type="password" name="pwd" placeholder="비밀번호" >
@@ -71,4 +50,34 @@
        </form>
     </div>
 </body>
+ <script>
+	var $j = jQuery.noConflict();
+	$j('#Check').click(function(){
+		let id = $j('#input_id').val(); //input_id에 입력되는 값
+		
+		 // 입력된 아이디 값이 비어있는지 확인
+	    if (id.trim() === '') {
+	        alert('아이디를 입력해주세요.');
+	        document.joinFrm.id.focus();
+	        return; // 함수 종료
+	    }
+		
+		$j.ajax({
+			url :"idCheck",
+			type : "post",
+			data : {id:id},
+			dataType : 'json',
+			success : function(result){
+				if(result==0){
+					$j("#checkId").html('*사용할 수 없는 아이디입니다.');
+				}else{
+					$j("#checkId").html('*사용 가능한 아이디입니다.');
+				}
+			},
+			error :  function () {
+				alert("서버요청실패");
+			}
+		})
+	})
+</script>
 </html>

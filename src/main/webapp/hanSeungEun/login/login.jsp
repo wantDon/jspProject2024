@@ -29,7 +29,7 @@
 	                </div>
 	
 	                <input type = "submit" class="allcenter btn_login" value = "로그인">
-	                <div style="margin-top: 5px;"><a href="join.jsp" class="text_link">회원가입</a></div>
+	                <div style="margin-top: 5px;"><a href="../join.jsp" class="text_link">회원가입</a></div>
                 </form>
             </div><!--login_wrap-->
         </div><!--input_wrap-->
