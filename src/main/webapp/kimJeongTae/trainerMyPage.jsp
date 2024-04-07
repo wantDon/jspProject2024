@@ -314,12 +314,6 @@
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                                 <label class="btn btn-outline-primary" for="btnradio1" onclick="showContent(1)">스케줄</label>
                         
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio2" onclick="showContent(2)">예약 정보</label>
-                        
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio3" onclick="showContent(3)">구매 내역</label>
-
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="btnradio4" onclick="showContent(4)">개인정보</label>
                             </div>
@@ -506,23 +500,16 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                        <button type="button" class="btn btn-warning col" onclick="scheduleApplication()">신청</button>
+                                        <div class="col"></div>
                                     	<button type="button" class="btn btn-warning col" onclick="scheduleCancle()">취소</button>
                                     	</div>
                                     	</form>
                                     	<script>
-                                    		function scheduleApplication() {
-													//신청버튼임 일정정보 + 개인유저정보 보내서 신청 처리.
-                                    			var frm = document.getElementById('scheduleApplicationForm');
-												if(document.getElementById('content1-user').value!='0'){
-													alert("선약이 있어요");
-													return;
-												}else frm.submit();
-											}
+                                    		
                                     		function scheduleCancle(){
                                     			var frm = document.getElementById('scheduleApplicationForm');
-                                    			
-												if(document.getElementById('content1-user').value=='0'){
+                                    			var today = new Date();
+												if(document.getElementById('content1-date').value <= today){
 													alert("취소할수 없는 스케줄입니다.1");
 													return;
 												}else if(document.getElementById('content1-user').value == '1'){
@@ -543,222 +530,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 예약 정보-->
-                    <div id="content2" class="content">
                     
-                        <div class="row d-flex justify-content-center" style="margin: 50px;">
-                            <div class="col border-top border-secondary border-4" style="max-width: 1000px; min-width: 100px; font-size: 24px; text-align: left; padding: 30px;">
-                            
-                                예약자 정보
-                                <div class="border border-1 border-secondary rounded-3" style="padding: 10px;">
-                                    <!--정보입력-->
-                                    <script type="text/javascript">
-                                    
-                                    <%
-                                    ReservationBean rbean = scheduleMgr.getReservationBean(1);
-                                    if(rbean.getNum()==0){
-                                    	//없는거
-                                    	%>
-                                    	
-                                    	 var reservation_username1 = "없어요";
-                                         var reservation_phonnum1 = "없어요";
-                                         var reservation_email1 = "없어요";
-                                         var reservation_population1 = "없어요";
-                                         var reservation_carflag1 = "없어요";
-                                         var reservation_date1 = "없어요";
-                                    	<%
-                                    }else{
-                                    %>
-                                   
-                                    var reservation_username1 = '<%=scheduleMgr.getReservationBean(1).getName() %>';
-                                    var reservation_phonnum1 = '<%=scheduleMgr.getReservationBean(1).getPhonenum() %>';
-                                    var reservation_email1 = '<%=scheduleMgr.getReservationBean(1).getEmail()%>';
-                                    var reservation_population1 = '<%=scheduleMgr.getReservationBean(1).getPopulation() %>';
-                                    var reservation_carflag1 = '<%=scheduleMgr.getReservationBean(1).getCarflag()%>';
-                                    var reservation_date1 = '<%=scheduleMgr.getReservationBean(1).getReservdate()%>';
-                                    <%
-                                    }
-                                    %>
-									
-                                    document.addEventListener("DOMContentLoaded", function() {
-                                    	
-                                        document.getElementById("reservation_usernamePrint").value = reservation_username1;
-                                        document.getElementById("reservation_phonnumPrint").value = reservation_phonnum1;
-                                        document.getElementById("reservation_emailPrint").value = reservation_email1;
-                                        document.getElementById("reservation_populationPrint").value = reservation_population1;
-                                        document.getElementById("reservation_carflagPrint").value = reservation_carflag1;
-                                        document.getElementById("reservation_datePrint").value = reservation_date1;
-                                    });
-                                    </script>
-                                    <!--정보입력-->
-                                    <div class="row" style="font-size: 14px;">
-                                    <form action="reservationFixProc.jsp" id="reservationFixFrom">
-                                        <!--이름 + 전화번호 + 이메일 입력-->
-                                        <div class="row justify-content-md-center">
-                                            <div class="col">
-                                              이 름
-                                            </div>
-                                            <div class="col-md-auto"> 
-                                            </div>
-                                            <input type="text" class="col" id="reservation_usernamePrint" value="없어요" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                              
-                                            <!--<input type="text" class="form-control" placeholder="aaa123" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">-->
-                                          </div>
-                                          <div class="row">
-                                            <div class="col">
-                                                전 화 번 호
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <input type="text" class="col" id="reservation_phonnumPrint" name="phonNum" value="아니 없다고요" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                          <div class="row justify-content-md-center">
-                                            <div class="col">
-                                                이 메 일
-                                            </div>
-                                            <div class="col-md-auto"> 
-                                            </div>
-                                            <input type="text" class="col" id="reservation_emailPrint" name="email" value="없다니깐요?!" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                          <div class="row">
-                                            <div class="col">
-                                                예 약 인 원
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <input type="text" class="col" id="reservation_populationPrint" name="population" value="예약이 없다고요" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                          <div class="row justify-content-md-center">
-                                            <div class="col">
-                                                차 량
-                                            </div>
-                                            <div class="col-md-auto"> 
-                                            </div>
-                                            <input type="text" class="col" id="reservation_carflagPrint" name="parking" value="1러3245" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                          <div class="row">
-                                            <div class="col">
-                                                예 약 날 짜 
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <input type="text" class="col" id="reservation_datePrint" name="reservationDate" value="2024-05-01" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                        </form>
-                                    </div>
-                                    
-                                    <!--예약변경+예약취소 버튼-->
-                                    <div style="text-align: right;">
-                                        <button type="button" class="btn btn-warning" onclick="fixedReservation()">수정</button>
-                                        <button type="button" class="btn btn-light" onclick="deleteReservation()">삭제</button>
-                                        <form action="reservationDeleteProc.jsp" id="reservationDeleteForm"></form>
-                                    </div>
-                                    <script>
-                                    	function fixedReservation(){
-                                    		const phoneInput = document.getElementById('reservation_phonnumPrint');
-                                            const phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
-
-                                            const emailInput = document.getElementById('reservation_emailPrint');
-                                            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-                                            const reservationDateInput = document.getElementById('reservation_datePrint');
-                                            const reservationDatePattern = Date.parse(reservationDateInput);
-
-                                            const populationInput = document.getElementById('reservation_populationPrint');
-                                            
-                                            if(document.getElementById('reservation_usernamePrint').value == "없어요"){
-                                            	alert("없는 예약은 수정할수 없어요")
-                                            	return;
-                                            }
-                                            
-                                            if(phonePattern.test(phoneInput.value)==false){
-                                                //전화번호 형식
-                                                alert("전화번호의 형식을 확인해 주세요");
-                                                return;
-                                            }else if(emailPattern.test(emailInput.value)==false){
-                                                //이메일
-                                                alert("이메일 형식을 확인해 주세요");
-                                                return;
-                                            }else if(isNaN(reservationDatePattern) == false){
-                                                alert("날짜 올바르게 입력할것");
-                                                return;
-                                            }else if(/^-?\d+$/.test(populationInput)== null){
-                                            	alert("인원수는 숫자만 입력하세요");
-                                            	return;
-                                            }
-                                            //이곳부터는 db에 값을 넣고 마이페이지를 다시 띄워준다.
-                                            var frm = document.getElementById('reservationFixFrom');
-                                            frm.submit();
-                                            alert("수정되었습니다.");
-                                    	}
-                                        function deleteReservation(){
-                                        	
-                                        	if(document.getElementById('reservation_usernamePrint').value == "없어요"){
-                                            	alert("없는 예약은 삭제할수 없어요")
-                                            	return;
-                                            }
-                                        	
-                                        	var frm01 = document.getElementById('reservationDeleteForm');
-                                            frm01.submit();
-                                            alert("삭제되었습니다.");
-                                        }
-                                    </script>
-                                    
-                                </div>
-                            </div> 
-                    </div>
-                   </div>
-                   
-                    <!-- 구매 내역 -->
-                    <div id="content3" class="content">
-                        <div class="row d-flex justify-content-center" style="margin: 50px;">
-                            <div class="col border-top border-secondary border-4" style="max-width: 1000px; min-width: 100px; padding: 30px;">
-                                <table id="datatablesSimple" style="margin-top: 3px;">  
-                                <thead>
-                                        <tr>
-                                            <th>주문 번호</th>
-                                            <th>상품명</th>
-                                            <th>결제일</th>
-                                            <th>금 액</th>
-                                            <th>상 태</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Num</th>
-                                            <th>Title</th>
-                                            <th>Name</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    <%
-                                    	for(int i = 0 ; i < scheduleMgr.getUserPayItemList(1).size();i++){
-                                    %>
-                                        <tr>
-                                            <td id="payItem_NumPrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getNum()%></td>
-                                            <td id="payItem_namePrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getNum()%></td>
-                                            <td id="payItem_datePrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getPaydate()%></td>
-                                            <td id="payItem_pricePrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getNum()%></td>
-                                            <td id="payItem_sellflagPrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getPayback()%></td>
-                                            
-                                        </tr>
-                                        <%
-                                        }
-                                        %>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
-                        
-
-
-
-                    </div>
+                    
                     <!-- 개인 정보 -->
                     <div id="content4" class="content">
                         <div class="row d-flex justify-content-center" style="margin: 50px;">
