@@ -156,7 +156,7 @@ public class TrainScheduleMgr {
 		}
 		return;
 	}
-	//트레이너 스케줄 추가 기능
+	//트레이너 이름찾기 기능
 	public String selectTrainerName(int userNum) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -184,8 +184,62 @@ public class TrainScheduleMgr {
 		
 		return name;
 	}
-	
-	
+	//트레이너 스케줄 일정 insert
+	public void insertTrainerSchedule(TrainScheduleBean bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = null;
+		try {
+			con = pool.getConnection();
+			sql = "INSERT INTO trainschedule (trainer, lcontent, DATE, starttime, endtime)\r\n"
+					+ "VALUES (?, ?,?, ?, ?);";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, bean.getTrainer());
+			pstmt.setInt(2, bean.getLcontent());
+			pstmt.setString(3, bean.getDate());
+			pstmt.setString(4, bean.getStarttime());
+			pstmt.setString(5, bean.getEndtime());
+			
+			
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			pool.freeConnection(con,pstmt);
+		}
+		return;
+	}
+	//트레이너 번호 select
+	public int selectTrainerNum(int userNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int num = 0;
+		
+		try {
+			con = pool.getConnection();
+			sql = "SELECT *\r\n"
+					+ "FROM trainer\r\n"
+					+ "WHERE user = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, userNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				num = rs.getInt("num");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			pool.freeConnection(con,pstmt,rs);
+		}
+		
+		
+		return num;
+	}
 	//===============================스케줄 사이드 컨텐츠==============================================
 	public Vector<PayitemsBean> getPayitemsList(int userNum) {
 		

@@ -1,11 +1,13 @@
+<%@page import="kimJeongTae.TrainScheduleBean"%>
 <%@page import="javax.swing.text.Document"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <jsp:useBean id="mgr" class="kimJeongTae.TrainScheduleMgr"></jsp:useBean>
+    <jsp:useBean id="mgr" class="kimJeongTae.TrainScheduleMgr"/>
+    <jsp:useBean id="mgrBean" class="kimJeongTae.TrainScheduleBean"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -14,7 +16,9 @@
 	String date = request.getParameter("content1-date");
 	//입력해야할 정보는 3가지 강사이름 강의정보 시간 을 입력받고 스케줄에 추가한다. + 강사번호는 유저번호 기반에서 트레이너테이블에서 검색
 	String name = mgr.selectTrainerName(1);
+	int trainer = mgr.selectTrainerNum(1);
 %>
+<form id="mainForm">
 <div class="row">
                                             <div class="col">
                                               수업번호
@@ -22,7 +26,7 @@
                                             <div class="col-md-auto" >
                                             </div>
                                             <div class="col" >
-                                            	<input type="text" class="col" id="content1-num" name="content1-num" value="수업번호" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
+                                            	<input type="text" class="col" id="content1-num" name="content1-num" value="1" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -34,6 +38,8 @@
                                             <div class="col" >
                                             	<input type="text" class="col" id="content1-trainer" name="content1-trainer" value="강사이름" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
                                             </div>
+                                            <input type="text" class="col" id="content2-trainer" name="trainer" value="강사번호" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
+                                            	
                                         </div>
                                         <div class="row">
                                             <div class="col" >
@@ -54,6 +60,7 @@
   <input class="category-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
   <label class="category-check-label" for="flexSwitchCheckChecked">gx</label>
 </div>
+<input type="text" class="col" id="content1-Lcontent" name="lcontent" value="수업번호" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -63,7 +70,7 @@
                                             <div class="col-md-auto" >
                                             </div>
                                             <div class="col" >
-                                     	        <input type="text" class="col" id="content1-date" name="content1-date" value="날짜" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
+                                     	        <input type="text" class="col" id="content1-date" name="date" value="날짜" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -109,7 +116,8 @@
   <input class="time-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" value="17:00:00">
   <label class="time-check-label" for="flexSwitchCheckChecked">17:00:00</label>
 </div>
-<input type="text" class="col" id="content1-time" name="content1-time" value="시간" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
+<input type="text" class="col" id="content1-time" name="starttime" value="시간" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
+<input type="text" class="col" id="content2-time" name="endtime" value="시간" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">    
                                             </div>
                                         </div>
                                         <div class="row">
@@ -122,10 +130,12 @@
                                              	<input type="text" class="col" id="content1-user" name="content1-user" value="자리" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
                                             </div>
                                         </div>
+                                        
                                         <div class="row">
                                         <div class="col"></div>
-                                    	<button type="button" class="btn btn-warning col" onclick="scheduleCancle()">입력</button>
+                                    	<button type="button" class="btn btn-warning col" onclick="insertSchedule()">입력</button>
                                     	</div>
+                                    	</form>
                                     	<script type="text/javascript">
                                     		//유형 라디오 스크립트
                                     		document.addEventListener('DOMContentLoaded', function() {
@@ -148,6 +158,8 @@
                                     		                result += otherSwitchElement.checked ? "1" : "0";
                                     		            });
                                     		            console.log(result);
+                                    		            document.getElementById('content1-Lcontent').value = result;
+                                    		            
                                     		        });
                                     		    });
 										    });
@@ -155,7 +167,7 @@
                                     		// 시간 체크박스 그룹
 									        var timeSwitches = document.querySelectorAll('.time-check-input');
 									        var content1TimeInput = document.getElementById('content1-time');
-									        
+									        var content2TimeInput = document.getElementById('content2-time');
 									        // 시간 체크박스에 대한 이벤트 리스너를 추가
 									        timeSwitches.forEach(function(timeSwitch) {
 									            timeSwitch.addEventListener('change', function() {
@@ -202,10 +214,12 @@
 									                    });
 
 									                    // 시작 시간과 끝 시간을 content1-time 인풋태그에 설정
-									                    content1TimeInput.value = startTime + " ~ " + endTime;
+									                    content1TimeInput.value = startTime;
+									                    content2TimeInput.value = endTime;
 									                } else {
 									                    // 선택된 시간 체크박스가 2개 미만이면 인풋태그를 초기화
 									                    content1TimeInput.value = "";
+									                    content2TimeInput.value = "";
 									                }
 									            });
 									        });
@@ -215,6 +229,20 @@
                                     	 	
                                     	 	var name = JSON.parse(JSON.stringify("<%=name%>"));
                                     	 	document.getElementById('content1-trainer').value = name;
+                                    	 	
+                                    	 	var trainer = JSON.parse(JSON.stringify("<%=trainer%>"));
+                                    	 	document.getElementById('content2-trainer').value = trainer;
+                                    	 	
+                                    	 	
+                                    	 	//스케줄 생성 버튼 이벤트
+                                    	 	function insertSchedule(){
+                                    	 		//폼태그를 통해 proc2로 보내고 request로 처리한다.
+                                    	 		var frm = document.getElementById('mainForm');
+													frm.setAttribute("action", "newScheduleProc2.jsp");
+													frm.submit();
+                                    	 		alert('성공햇습니다. 확인해보세요.');
+                                    	 	}
+                                    	 	
                                     	</script>
 </body>
 

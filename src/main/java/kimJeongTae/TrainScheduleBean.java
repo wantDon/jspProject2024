@@ -13,7 +13,11 @@ public class TrainScheduleBean {
 	private String starttime;
 	private String endtime;
 	private int frnum;
+	private boolean sflag;
 	
+	public TrainScheduleBean() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getNum() {
 		return num;
 	}
@@ -62,5 +66,12 @@ public class TrainScheduleBean {
 	public void setFrnum(int frnum) {
 		this.frnum = frnum;
 	}
+	public boolean getSflag() {
+		return sflag;
+	}
+	public void setSflag(boolean sflag) {
+		this.sflag = sflag;
+	}
+	
 	
 }
