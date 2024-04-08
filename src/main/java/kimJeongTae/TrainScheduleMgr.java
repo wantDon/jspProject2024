@@ -157,7 +157,33 @@ public class TrainScheduleMgr {
 		return;
 	}
 	//트레이너 스케줄 추가 기능
-	
+	public String selectTrainerName(int userNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String name = "이름못찾음";
+		
+		try {
+			con = pool.getConnection();
+			sql = "SELECT *\r\n"
+					+ "FROM user\r\n"
+					+ "WHERE num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, userNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				name = rs.getString("name");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			pool.freeConnection(con,pstmt,rs);
+		}
+		
+		
+		return name;
+	}
 	
 	
 	//===============================스케줄 사이드 컨텐츠==============================================

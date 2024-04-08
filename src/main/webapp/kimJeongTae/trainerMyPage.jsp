@@ -102,10 +102,19 @@
       },
       initialDate: '2024-04-12',
       navLinks: true, // can click day/week names to navigate views
-      selectable: false,
+      selectable: true,
       selectMirror: false,
       select: function(arg) {
     	  //이벤트 추가 메소드
+    	  document.getElementById("content1-date").value = arg.startStr;
+          
+          
+          	var frm = document.getElementById('scheduleApplicationForm');
+          	alert("스케줄의 추가를 진행하겠습니다.");
+			frm.setAttribute("action", "newScheduleProc.jsp");
+			frm.submit();
+
+
       },
       eventClick: function(arg) {
     	  //각각의 요소에 값을 넣고
@@ -418,7 +427,7 @@
                                 </div>
                                 <div class="container rounded border border-primary border-dashed" style="flex: 1; margin: 10px;max-height: 200px;">
                                     <div style="text-align: left; font-size: 24px;" class="container border-bottom border-danger">
-                                        상품 정보
+                                        수업 정보
                                     </div>
                                     <div class="container text-center" style="padding: 10px;min-height:auto;">
                                         <script>
