@@ -299,7 +299,7 @@ public class TrainScheduleMgr {
 		try {
 			con = pool.getConnection();
 			sql = "UPDATE reservation\r\n"
-					+ "SET phonenum = '?',email='?',population = '?',carflag = ?,reservdate = '?'\r\n"
+					+ "SET phonenum = ?,email=?,population = ?,carflag = ?,reservdate = ?\r\n"
 					+ "WHERE user = ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rBean.getPhonenum());

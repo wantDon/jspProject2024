@@ -581,7 +581,6 @@
                                     %>
 									
                                     document.addEventListener("DOMContentLoaded", function() {
-                                    	
                                         document.getElementById("reservation_usernamePrint").value = reservation_username1;
                                         document.getElementById("reservation_phonnumPrint").value = reservation_phonnum1;
                                         document.getElementById("reservation_emailPrint").value = reservation_email1;
