@@ -192,9 +192,11 @@ public class TrainScheduleMgr {
 		String sql = null;
 		try {
 			con = pool.getConnection();
-			sql = "INSERT INTO trainschedule (trainer, lcontent, DATE, starttime, endtime)\r\n"
-					+ "VALUES (?, ?,?, ?, ?);";
+			sql = "INSERT INTO trainschedule (trainer, lcontent, DATE, starttime, endtime) "
+					+ "VALUES (?, ?, ?, ?, ?);";
+			
 			pstmt = con.prepareStatement(sql);
+			
 			
 			pstmt.setInt(1, bean.getTrainer());
 			pstmt.setInt(2, bean.getLcontent());
@@ -239,6 +241,28 @@ public class TrainScheduleMgr {
 		
 		
 		return num;
+	}
+	
+	public void trainerScheduleCancleFrom(int scheduleNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = null;
+		try {
+			con = pool.getConnection();
+			sql = "DELETE FROM trainschedule\r\n"
+					+ "WHERE num = ?;";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,scheduleNum);
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			pool.freeConnection(con,pstmt);
+		}
+		return;
+		
 	}
 	//===============================스케줄 사이드 컨텐츠==============================================
 	public Vector<PayitemsBean> getPayitemsList(int userNum) {
@@ -305,25 +329,24 @@ public class TrainScheduleMgr {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				System.out.println(rs.getString(4));
-				item01.setNum(rs.getInt(1));
-				item01.setItemname(rs.getString(2));
-				item01.setHcontent(rs.getString(3));
+				item01.setNum(rs.getInt("num"));
+				item01.setItemname(rs.getString("itemname"));
+				item01.setHcontent(rs.getString("hcontent"));
 				//날짜 처리해서 보내주기
 		        LocalDate date1 = LocalDate.parse(item.getPaydate());
-		        LocalDate date2 = LocalDate.parse(rs.getString(4));
+		        LocalDate date2 = LocalDate.parse(rs.getString("fcperiod"));
 
 		        LocalDate newDate = date1.plusYears(date2.getYear())
 		                                .plusMonths(date2.getMonthValue())
 		                                .plusDays(date2.getDayOfMonth());
 				item01.setFcperiod(newDate.toString());
 				//gx와 pt횟수 계산해서 보내주기
-				item01.setPtnum(rs.getInt(5));
-				item01.setGxnum(rs.getInt(6));
-				item01.setFrnum(rs.getInt(7));
-				item01.setSellperiod(rs.getString(8));
-				item01.setPrice(rs.getInt(9));
-				item01.setSellflag(rs.getBoolean(10));
+				item01.setPtnum(rs.getInt("ptnum"));
+				item01.setGxnum(rs.getInt("gxnum"));
+				item01.setFrnum(rs.getInt("frnum"));
+				item01.setSellperiod(rs.getString("sellperiod"));
+				item01.setPrice(rs.getInt("price"));
+				item01.setSellflag(rs.getBoolean("sellflag"));
 				
 			}
 		}catch (Exception e) {
