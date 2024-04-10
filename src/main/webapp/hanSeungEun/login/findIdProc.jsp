@@ -34,31 +34,12 @@
     <label for="tab2">비밀번호 찾기</label>
 
     <section id="content1">
-        <form name="findIdFrom" method="post" action="findProc.jsp">
+        <form name="findIdFrom" method="post" action="findIdProc.jsp">
             <div class="center id_out">당신의 아이디는 <span><%=id%></span> 입니다.</div>
             <div class="center">
             <button type="button" class="btn_back" onclick="goBack()">뒤로가기</button>
             <button type="button" class="btn_login" onclick="login()">로그인</button>
             </div>
-        </form>
-    </section>
-    
-    <section id="content2">
-        <form>
-            <p>등록된 회원정보를 입력해주세요.</p>
-            <div class="name_input center">
-                <span class="span_font">이름</span>
-                <input type="id" placeholder="이름 입력">
-            </div>
-            <div class="email_input center">
-                <span class="span_font">이메일</span>
-                <input type="email" placeholder="이메일 입력">
-            </div>
-            <div class="id_input center">
-                <span class="span_font">아이디</span>
-                <input type="id" placeholder="아이디 입력">
-            </div>
-            <button class="center btn_next">다음</button>
         </form>
     </section>
     </div><!-- main -->

@@ -14,33 +14,41 @@ public class UserMgr {
 		pool = DBConnectionMgr.getInstance();
 	}
 
-	// 로그인
-	public int loginMember(String id, String pwd) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		int mode = 0;
-		// 0-id false, 1-id true pwd-false, 2-id&pwd true
-		try {
-			if (!checkId(id)) return mode;
-			con = pool.getConnection();
-			sql = "select id, pwd from user where id = ? and pwd = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
-			rs = pstmt.executeQuery();
-			if (rs.next())
-				mode = 2;
-			else
-				mode = 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			pool.freeConnection(con, pstmt, rs);
-		}
-		return mode;
+	//로그인(일반 사용자 : 1, 트레이너 : 2, 관리자 : 3)
+	public LoginResult loginMember(String id, String pwd) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    
+	    LoginResult result = new LoginResult();
+
+	    try {
+	        if (!checkId(id)) {
+	            result.setMode(0); // 아이디가 존재하지 않음
+	            return result;
+	        }
+	        con = pool.getConnection();
+	        sql = "select id, pwd, authority from user where id = ? and pwd = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        pstmt.setString(2, pwd);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            result.setMode(2); // 아이디와 비밀번호 모두 일치함
+	            result.setAuthority(rs.getInt("authority")); // 권한 정보 저장
+	        } else {
+	            result.setMode(1); // 아이디는 존재하지만 비밀번호가 일치하지 않음
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        pool.freeConnection(con, pstmt, rs);
+	    }
+	    return result;
 	}
+	
 	
 	//ID 중복확인
 		public boolean checkId(String id) {
@@ -98,7 +106,6 @@ public class UserMgr {
 	        Connection con = null;
 	        PreparedStatement pstmt = null;
 	        ResultSet rs = null;
-
 	        try {
 	            con = pool.getConnection();
 	            String sql = "select id from user where name = ? and email = ?";
@@ -116,5 +123,7 @@ public class UserMgr {
 	        }
 	        return userId;
 	    }
-
+		
+		
+	    
 }
