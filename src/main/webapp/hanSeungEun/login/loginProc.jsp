@@ -1,10 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <jsp:useBean id="uMgr" class="hanSeungEun.UserMgr" />
-<%
-	String id = request.getParameter("id");
-	String pwd = request.getParameter("pwd");
-	int mode = uMgr.loginMember(id, pwd);
 
+<<<<<<< HEAD
 	if(mode==0){
 		response.sendRedirect("logError.jsp?mode=0");
 	}else if(mode==1){
@@ -14,4 +11,19 @@
 		response.sendRedirect(request.getContextPath() + "/jeongJiYoon/HomePage.jsp");
 
 	}
+=======
+<%
+   String id = request.getParameter("id");
+   String pwd = request.getParameter("pwd");
+   int mode = uMgr.loginMember(id, pwd);
+
+   if(mode==0){
+      response.sendRedirect("logError.jsp?mode=0");
+   }else if(mode==1){
+      response.sendRedirect("logError.jsp?mode=1");
+   }else if(mode==2){
+      session.setAttribute("idKey",id);
+      response.sendRedirect("../index.jsp");
+   }
+>>>>>>> 17029e00cdac7b88b78dddfca1b6a9cfe0a0424a
 %>

@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%
+String path="..";
+%>
 
 <!doctype html>
 <head>
@@ -8,7 +11,15 @@
     <title>멤버쉽</title>
 </head>
 <body class="allstyles">
+<%@ include file="../header.jsp" %>
     <div class="wrap">
+    	<div class="main_bg">
+            <div class="res_introduce">
+                <p class="res_text">Membership</p>
+                <p class="res_text_1">상담 전 원하시는 상품을 미리 말씀해주시면 더욱더 빠르고<br>정확한 상담이 가능합니다.</p>
+        	</div><!--res_introduce-->
+        </div><!--main_bg-->
+    
         <div class="line center"></div>
         <div class="content1 center">
             <h3>정기결제권</h3>
@@ -51,14 +62,13 @@
         </div><!--content3-->
         
         <div class="line center"></div>
-        <div class="content4">
+        <div class="content4" style="padding-bottom : 200px;">
             <div class="text">
                 <h2>편의시설</h2>
                 <img src="../img/cm.PNG" alt="이미지">
             </div>
         </div><!--content4-->
-
-        <div class="line center"></div>
     </div><!--wrap-->
+<%@ include file="../footer.jsp" %> 
 </body>
 </html>
