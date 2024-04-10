@@ -90,5 +90,31 @@ public class UserMgr {
 			}
 			return flag;
 		}
+		
+		
+		//아이디 찾기
+		public String findId(String name, String email) {
+	        String userName = null;
+	        Connection con = null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
+
+	        try {
+	            con = pool.getConnection();
+	            String sql = "select id from user where name = ? and email = ?";
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setString(1, name);
+	            pstmt.setString(2, email);
+	            rs = pstmt.executeQuery();
+	            if (rs.next()) {
+	                userName = rs.getString("name");
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            pool.freeConnection(con, pstmt, rs);
+	        }
+	        return userName;
+	    }
 
 }
