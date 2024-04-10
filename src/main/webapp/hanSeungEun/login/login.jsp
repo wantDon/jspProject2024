@@ -23,7 +23,7 @@ String path=".";
                     <input type="text" name="id" class="login_box" placeholder="아이디" style="width:99%">
                     <input type="password" name="pwd" class="border_radius_1 login_box"  placeholder="비밀번호" style="width:99%">
                 
-	                <a href="#" class="find_text">아이디/비번찾기</a>
+	                <a href="findIdPw.jsp" class="find_text">아이디/비번찾기</a>
 	                <div style="clear: both;"></div>
 	
 	                <p class="social_text">개인정보 보호를 위해 공용 PC에서 사용 후 SNS 계정의 로그아웃 상태를 반드시 확인해주세요.</p>
