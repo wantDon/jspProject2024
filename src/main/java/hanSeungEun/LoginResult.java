@@ -1,5 +1,5 @@
 package hanSeungEun;
-
+//접근 권한, 로그인/비번 일치와 관련된 2가지 변수를 반환하기 위해 작성
 public class LoginResult {
 	 private int mode;
 	    private int authority;
