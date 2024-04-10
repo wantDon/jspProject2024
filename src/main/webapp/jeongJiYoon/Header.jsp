@@ -134,8 +134,8 @@
                     <li><a href="ProgramPage.jsp">Program</a></li>
                     <li><a href="#">Reservation</a></li>
                     <li><a href="#">Membership</a></li>
-                    <li><a href="#">Review</a></li>
-                    <li><a href="#">Q&A</a></li>
+                    <li><a href="ReviewPage.jsp">Review</a></li>
+                    <li><a href="QnaPage.jsp">Q&A</a></li>
                     <li class="login">
                      	   <a href="#">Login</a>
                     </li>

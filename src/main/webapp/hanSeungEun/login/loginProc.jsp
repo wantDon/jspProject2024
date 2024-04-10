@@ -11,6 +11,7 @@
 		response.sendRedirect("logError.jsp?mode=1");
 	}else if(mode==2){
 		session.setAttribute("idKey",id);
-		response.sendRedirect("index.jsp");
+		response.sendRedirect(request.getContextPath() + "/jeongJiYoon/HomePage.jsp");
+
 	}
 %>
