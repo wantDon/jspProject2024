@@ -23,8 +23,7 @@ public class UserMgr {
 		int mode = 0;
 		// 0-id false, 1-id true pwd-false, 2-id&pwd true
 		try {
-			if (!checkId(id))
-				return mode;
+			if (!checkId(id)) return mode;
 			con = pool.getConnection();
 			sql = "select id, pwd from user where id = ? and pwd = ?";
 			pstmt = con.prepareStatement(sql);
