@@ -119,21 +119,17 @@ p:nth-of-type(1) {
     padding-left: 10px;
 }
 
+.pwd_input > input {
+	width: 250px;
+    height: 30px;
+    margin-left: 30px;
+    border: solid 1px #ddd;
+    padding-left: 10px;
+}
+
 .span_font{
     font-size: 14px;
     font-weight: bold;
-}
-
-#content1  input[type="button"] {
-    margin-top: 50px;
-    width: 80px;
-    height: 30px;
-}
-
-#content2  input[type="button"] {
-    margin-top: 50px;
-    width: 80px;
-    height: 30px;
 }
 
 .id_out {
@@ -166,3 +162,4 @@ p:nth-of-type(1) {
     margin-top: 50px;
     font-size: 15px;
 }
+
