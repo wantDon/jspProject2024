@@ -52,7 +52,7 @@
 .login_box {
     padding-left: 15px;
     display: block; /*가로 한줄 차지*/
-    width: 94%;
+    width: 99%;
     height: 45px;
     border: solid 1px #808080;
     border-radius: 8px 8px 0 0 / 8px 8px 0 0 ;
