@@ -46,7 +46,7 @@ public class UserBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isGander() {
+	public boolean getGander() {
 		return gander;
 	}
 	public void setGander(boolean gander) {

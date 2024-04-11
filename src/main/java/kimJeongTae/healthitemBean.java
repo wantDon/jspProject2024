@@ -11,6 +11,7 @@ public class healthitemBean {
 	private String sellperiod;
 	private int price;
 	private boolean sellflag;
+	private String deadlinedate;
 	
 	public healthitemBean() {
 		// TODO Auto-generated constructor stub
@@ -38,6 +39,12 @@ public class healthitemBean {
 	}
 	public void setFcperiod(String fcperiod) {
 		this.fcperiod = fcperiod;
+	}
+	public String getDeadlinedate() {
+		return deadlinedate;
+	}
+	public void setDeadlinedate(String deadlinedate) {
+		this.deadlinedate = deadlinedate;
 	}
 	public int getPtnum() {
 		return ptnum;
@@ -69,7 +76,7 @@ public class healthitemBean {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public boolean isSellflag() {
+	public boolean getSellflag() {
 		return sellflag;
 	}
 	public void setSellflag(boolean sellflag) {

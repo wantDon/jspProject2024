@@ -4,10 +4,31 @@ public class PayitemsBean {
 	private int num;
 	private int user;
 	private String paydate;
+	private String opdate;
+	private String ptdate;
+	private String gxdate;
 	private int item;
 	private boolean payflag;
 	private boolean ccflag;
 	private boolean payback;
+	public String getOpdate() {
+		return opdate;
+	}
+	public void setOpdate(String opdate) {
+		this.opdate = opdate;
+	}
+	public String getPtdate() {
+		return ptdate;
+	}
+	public void setPtdate(String ptdate) {
+		this.ptdate = ptdate;
+	}
+	public String getGxdate() {
+		return gxdate;
+	}
+	public void setGxdate(String gxdate) {
+		this.gxdate = gxdate;
+	}
 	
 	public int getNum() {
 		return num;
