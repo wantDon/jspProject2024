@@ -1,15 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="kimJeongTae.UserBean"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:useBean id="mgr" class="kimJeongTae.TrainScheduleMgr"/>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <%
-	mgr.deleteReservationBean(1);
+	//String userId = "john_doe";
+	String userId = "aaa";
+	UserBean userbean = mgr.getUserBean(userId);
+	
+%>
+<%
+	mgr.deleteReservationBean(userbean.getNum());
 	response.sendRedirect("myPage.jsp");
 
 

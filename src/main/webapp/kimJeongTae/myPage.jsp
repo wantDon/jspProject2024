@@ -1,4 +1,5 @@
 
+<%@page import="kimJeongTae.UserBean"%>
 <%@page import="kimJeongTae.ReservationBean"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -6,24 +7,34 @@
 <%@page import="kimJeongTae.TrainScheduleBean"%>
 <%@page import="java.util.Vector"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<jsp:useBean id="scheduleMgr" class = "kimJeongTae.TrainScheduleMgr"/>
-
+	pageEncoding="UTF-8"%>
+<jsp:useBean id="scheduleMgr" class="kimJeongTae.TrainScheduleMgr" />
+<%
+	//String userId = "john_doe";
+	String userId = "aaa";
+	UserBean userbean = scheduleMgr.getUserBean(userId);
+	
+%>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        <script>            
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Dashboard - SB Admin</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+	rel="stylesheet" />
+<link href="css/styles.css" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+	crossorigin="anonymous"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>            
         window.addEventListener('DOMContentLoaded', event => {
         // Toggle the side navigation
         const sidebarToggle = document.body.querySelector('#sidebarToggle');
@@ -40,8 +51,8 @@
         }
         });
         </script>
-        <!--달력-->
-        <script src='dist/index.global.js'></script>
+<!--달력-->
+<script src='dist/index.global.js'></script>
 <script>
 	<%
 	Vector<TrainScheduleBean> vlist = scheduleMgr.getTrainSchedule(); // 백터 데이터 가져오기
@@ -126,19 +137,17 @@
   });
 </script>
 <style>
+body {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 14px;
+}
 
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #calendar {
-    max-width: 1000px;
-    margin: 50px;
-  }
-
+#calendar {
+	max-width: 1000px;
+	margin: 50px;
+}
 </style>
 
 <!--구매내역-->
@@ -158,89 +167,96 @@
             pager.render();
         }
         });
-</script>   
+</script>
 </head>
-    <body class="sb-nav-fixed">
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_content">
-                <main>
-                    <div id="output"></div>
-                    <!--리뷰 택스트-->
-                    <div class="container border-bottom border-danger" id="review_title">
-                        <style>
-                            #review_title{
-                                padding-top: 100px;
-                                font-size: 40pt;
-                                justify-content: center;
-                                align-items: center;
-                                text-align: center;
-                                max-width: 250px;
-                            }
-                        </style>
-                        REVIEW
-                    </div>
-                    <!--마이페이지 컨텐츠 부분.-->
-                   
-                    <div id="review_group_button_container">
-                        <style>
-                            #review_group_button_container{
-                                margin: 50px;
-                                text-align: center;
-                                
-                                
-                            }
-                            .btn {
-                                min-width: 150px; /* 최소 가로 크기를 200px로 설정 */
-                                cursor: pointer; /* 커서 스타일 설정 */
-                                max-width: 350px;
-                            }
-                            .content {
-                                display: none; /* 기본적으로 숨김 처리 */
-                            }
-                            .content.active {
-                                display: block; /* 활성화된 콘텐츠만 표시 */
-                            }
-                        </style>
-                        
-                        <div id="review_group_button_container">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="btnradio1" onclick="showContent(1)">스케줄</label>
-                        
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio2" onclick="showContent(2)">예약 정보</label>
-                        
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio3" onclick="showContent(3)">구매 내역</label>
+<body class="sb-nav-fixed">
+	<%@ include file="Header.jsp"%>
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_content">
+			<main>
+				<div id="output"></div>
+				<!--리뷰 택스트-->
+				<div class="container border-bottom border-danger" id="review_title">
+					<style>
+#review_title {
+	padding-top: 100px;
+	font-size: 40pt;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	max-width: 250px;
+}
+</style>
+					REVIEW
+				</div>
+				<!--마이페이지 컨텐츠 부분.-->
 
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio4" onclick="showContent(4)">개인정보</label>
-                            </div>
-                        </div>
-                    </div>
+				<div id="review_group_button_container">
+					<style>
+#review_group_button_container {
+	margin: 50px;
+	text-align: center;
+}
 
-                    <div id="content1" class="content active">
-                        <!-- 스케줄 (점포의 트레이너 스케줄을 읽어들이고 출력할수 있어야 한다.) -->
-                        <div class="row justify-content-center" id="review-content-row">
-                            <style>
-                                #calendar-sideContents{
-                                    max-width: 350px;
-                                    padding-top: 50px;
-                                    padding-bottom: 50px;
-                                    
-                                }
-                                #review-content-row{
-                                    text-align: center;
-                                    
-                                }
-                            </style>
-                            <script>
+.btn {
+	min-width: 150px; /* 최소 가로 크기를 200px로 설정 */
+	cursor: pointer; /* 커서 스타일 설정 */
+	max-width: 350px;
+}
+
+.content {
+	display: none; /* 기본적으로 숨김 처리 */
+}
+
+.content.active {
+	display: block; /* 활성화된 콘텐츠만 표시 */
+}
+</style>
+
+					<div id="review_group_button_container">
+						<div class="btn-group" role="group"
+							aria-label="Basic radio toggle button group">
+							<input type="radio" class="btn-check" name="btnradio"
+								id="btnradio1" autocomplete="off" checked> <label
+								class="btn btn-outline-primary" for="btnradio1"
+								onclick="showContent(1)">스케줄</label> <input type="radio"
+								class="btn-check" name="btnradio" id="btnradio2"
+								autocomplete="off"> <label
+								class="btn btn-outline-primary" for="btnradio2"
+								onclick="showContent(2)">예약 정보</label> <input type="radio"
+								class="btn-check" name="btnradio" id="btnradio3"
+								autocomplete="off"> <label
+								class="btn btn-outline-primary" for="btnradio3"
+								onclick="showContent(3)">구매 내역</label> <input type="radio"
+								class="btn-check" name="btnradio" id="btnradio4"
+								autocomplete="off"> <label
+								class="btn btn-outline-primary" for="btnradio4"
+								onclick="showContent(4)">개인정보</label>
+						</div>
+					</div>
+				</div>
+
+				<div id="content1" class="content active">
+					<!-- 스케줄 (점포의 트레이너 스케줄을 읽어들이고 출력할수 있어야 한다.) -->
+					<div class="row justify-content-center" id="review-content-row">
+						<style>
+#calendar-sideContents {
+	max-width: 350px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#review-content-row {
+	text-align: center;
+}
+</style>
+						<script>
                           //상품정보에 대해 각종 변수를 입력해서 출력해보자.
-                            var itemName = "<%=scheduleMgr.userItem(1).getItemname()%>"; //회원번호 기반으로 최신 구매 상품정보 가져오기.
-                            var endDate = "<%=scheduleMgr.userItem(1).getFcperiod()%>";//구매날짜
-                            var endDate2 = "<%=scheduleMgr.userItem(1).getFcperiod()%>";//구매날짜와 상품정보 대조해서 정보빼오기.
-                            var gxCount = <%=scheduleMgr.userItem(1).getGxnum()%>;
-                            var ptCount = <%=scheduleMgr.userItem(1).getPtnum()%>;
+                            var itemName = "<%=scheduleMgr.userItem(userbean.getNum()).getItemname()%>"; //회원번호 기반으로 최신 구매 상품정보 가져오기.
+                            var endDate = "<%=scheduleMgr.userItem(userbean.getNum()).getFcperiod()%>";//구매날짜
+                            var endDate2 = "<%=scheduleMgr.userItem(userbean.getNum()).getFcperiod()%>";//구매날짜와 상품정보 대조해서 정보빼오기.
+                            var gxCount = <%=scheduleMgr.userItem(userbean.getNum()).getGxnum()%>;
+                            var ptCount = <%=scheduleMgr.userItem(userbean.getNum()).getPtnum()%>;
 
                             document.addEventListener("DOMContentLoaded", function() {
                                 document.getElementById("itemNamePrint").innerText = itemName;
@@ -250,77 +266,58 @@
                                 document.getElementById("ptCountPrint").innerText = ptCount+"회";
                             });
                             </script>
-                            <div class="col" id='calendar'></div>
-                            <div class="col" id="calendar-sideContents" style="display: flex; flex-direction: column;">
-                                
-                                <div class="col" id="calendar-sideContents" style="display: flex; flex-direction: column;">
-                                <!-- 위 => 출결현황,하 => 문의 전화 -->
-                                <div class="container rounded border border-primary border-dashed" style="flex: 1; margin: 10px; padding: 10px; max-height: 200px;">
-                                    <div style="text-align: left; font-size: 24px;" class="container border-bottom border-danger">
-                                        상품 정보
-                                    </div>
-                                    <div class="container text-center" style="padding: 10px;min-height:auto;">
-                                        <div class="row justify-content-md-center">
-                                          <div class="col">
-                                            상품명
-                                          </div>
-                                          <div class="col-md-auto"> 
-                                          </div>
-                                          <div class="col" id="itemNamePrint">
-                                            상품넘버123
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col">
-                                            만료 기한
-                                          </div>
-                                          <div class="col-md-auto">
-                                          </div>
-                                          <div class="col" id = "endDatePrint">
-                                            2024-05-01
-                                          </div>
-                                        </div>
-                                        
-                                        <!--싸이즈박스-->
-                                        <div class="sizedbox" style="height: 10px;"></div>
-                                        <div class="row">
-                                            <div class="col">
-                                              시설 이용
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <div class="col" id="endDate2Print">
-                                              2024-05-01
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                              G X
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <div class="col" id="gxCountPrint">
-                                              5회
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                              P T
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <div class="col" id="ptCountPrint">
-                                              4회
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div>
-                                <div class="container rounded border border-primary border-dashed" style="flex: 1; margin: 10px;max-height: 200px;">
-                                    <div style="text-align: left; font-size: 24px;" class="container border-bottom border-danger">
-                                        상품 정보
-                                    </div>
-                                    <div class="container text-center" style="padding: 10px;min-height:auto;">
-                                        <script>
+						<div class="col" id='calendar'></div>
+						<div class="col" id="calendar-sideContents"
+							style="display: flex; flex-direction: column;">
+
+							<div class="col" id="calendar-sideContents"
+								style="display: flex; flex-direction: column;">
+								<!-- 위 => 출결현황,하 => 문의 전화 -->
+								<div
+									class="container rounded border border-primary border-dashed"
+									style="flex: 1; margin: 10px; padding: 10px; max-height: 200px;">
+									<div style="text-align: left; font-size: 24px;"
+										class="container border-bottom border-danger">상품 정보</div>
+									<div class="container text-center"
+										style="padding: 10px; min-height: auto;">
+										<div class="row justify-content-md-center">
+											<div class="col">상품명</div>
+											<div class="col-md-auto"></div>
+											<div class="col" id="itemNamePrint">상품넘버123</div>
+										</div>
+										<div class="row">
+											<div class="col">만료 기한</div>
+											<div class="col-md-auto"></div>
+											<div class="col" id="endDatePrint">2024-05-01</div>
+										</div>
+
+										<!--싸이즈박스-->
+										<div class="sizedbox" style="height: 10px;"></div>
+										<div class="row">
+											<div class="col">시설 이용</div>
+											<div class="col-md-auto"></div>
+											<div class="col" id="endDate2Print">2024-05-01</div>
+										</div>
+										<div class="row">
+											<div class="col">G X</div>
+											<div class="col-md-auto"></div>
+											<div class="col" id="gxCountPrint">5회</div>
+										</div>
+										<div class="row">
+											<div class="col">P T</div>
+											<div class="col-md-auto"></div>
+											<div class="col" id="ptCountPrint">4회</div>
+										</div>
+									</div>
+								</div>
+								<div
+									class="container rounded border border-primary border-dashed"
+									style="flex: 1; margin: 10px; max-height: 200px;">
+									<div style="text-align: left; font-size: 24px;"
+										class="container border-bottom border-danger">상품 정보</div>
+									<div class="container text-center"
+										style="padding: 10px; min-height: auto;">
+										<script>
                                        		var content1_num = 없음;
                                             var content1_trainer = 없음;
                                             var content1_lcontent = 없음;
@@ -337,73 +334,82 @@
                                             document.getElementById("content1-user").value = content1_user;
                                             });
                                         </script>
-                                        <form action="scheduleApplicationProc.jsp" id="scheduleApplicationForm">
-                                        <div class="row">
-                                            <div class="col">
-                                              수업번호
-                                            </div>
-                                            <div class="col-md-auto" >
-                                            </div>
-                                            <div class="col" >
-                                            	<input type="text" class="col" id="content1-num" name="content1-num" value="수업번호" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                              강사
-                                            </div>
-                                            <div class="col-md-auto" >
-                                            </div>
-                                            <div class="col" >
-                                            	<input type="text" class="col" id="content1-trainer" name="content1-trainer" value="강사이름" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col" >
-                                              유형
-                                            </div>
-                                            <div class="col-md-auto" >
-                                            </div>
-                                            <div class="col" >
-                                              <input type="text" class="col" id="content1-lcontent" name="content1-lcontent" value="강의정보" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                              날짜
-                                            </div>
-                                            <div class="col-md-auto" >
-                                            </div>
-                                            <div class="col" >
-                                     	        <input type="text" class="col" id="content1-date" name="content1-date" value="날짜" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                              시간
-                                            </div>
-                                            <div class="col-md-auto" >
-                                            </div>
-                                            <div class="col">
-                                             	<input type="text" class="col" id="content1-time" name="content1-time" value="시간" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                              자리
-                                            </div>
-                                            <div class="col-md-auto" >
-                                            </div>
-                                            <div class="col">
-                                             	<input type="text" class="col" id="content1-user" name="content1-user" value="자리" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                        <button type="button" class="btn btn-warning col" onclick="scheduleApplication()">신청</button>
-                                    	<button type="button" class="btn btn-warning col" onclick="scheduleCancle()">취소</button>
-                                    	</div>
-                                    	</form>
-                                    	<script>
+										<form action="scheduleApplicationProc.jsp"
+											id="scheduleApplicationForm">
+											<div class="row">
+												<div class="col">수업번호</div>
+												<div class="col-md-auto"></div>
+												<div class="col">
+													<input type="text" class="col" id="content1-num"
+														name="content1-num" value="수업번호"
+														aria-label="Recipient's username"
+														aria-describedby="basic-addon2"
+														style="pointer-events: none;">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">강사</div>
+												<div class="col-md-auto"></div>
+												<div class="col">
+													<input type="text" class="col" id="content1-trainer"
+														name="content1-trainer" value="강사이름"
+														aria-label="Recipient's username"
+														aria-describedby="basic-addon2"
+														style="pointer-events: none;">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">유형</div>
+												<div class="col-md-auto"></div>
+												<div class="col">
+													<input type="text" class="col" id="content1-lcontent"
+														name="content1-lcontent" value="강의정보"
+														aria-label="Recipient's username"
+														aria-describedby="basic-addon2"
+														style="pointer-events: none;">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">날짜</div>
+												<div class="col-md-auto"></div>
+												<div class="col">
+													<input type="text" class="col" id="content1-date"
+														name="content1-date" value="날짜"
+														aria-label="Recipient's username"
+														aria-describedby="basic-addon2"
+														style="pointer-events: none;">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">시간</div>
+												<div class="col-md-auto"></div>
+												<div class="col">
+													<input type="text" class="col" id="content1-time"
+														name="content1-time" value="시간"
+														aria-label="Recipient's username"
+														aria-describedby="basic-addon2"
+														style="pointer-events: none;">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">자리</div>
+												<div class="col-md-auto"></div>
+												<div class="col">
+													<input type="text" class="col" id="content1-user"
+														name="content1-user" value="자리"
+														aria-label="Recipient's username"
+														aria-describedby="basic-addon2"
+														style="pointer-events: none;">
+												</div>
+											</div>
+											<div class="row">
+												<button type="button" class="btn btn-warning col"
+													onclick="scheduleApplication()">신청</button>
+												<button type="button" class="btn btn-warning col"
+													onclick="scheduleCancle()">취소</button>
+											</div>
+										</form>
+										<script>
                                     		function scheduleApplication() {
 													//신청버튼임 일정정보 + 개인유저정보 보내서 신청 처리.
                                     			var frm = document.getElementById('scheduleApplicationForm');
@@ -429,27 +435,30 @@
 												}
                                     		}
                                     	</script>
-                                    	
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 예약 정보-->
-                    <div id="content2" class="content">
-                    
-                        <div class="row d-flex justify-content-center" style="margin: 50px;">
-                            <div class="col border-top border-secondary border-4" style="max-width: 1000px; min-width: 100px; font-size: 24px; text-align: left; padding: 30px;">
-                            
-                                예약자 정보
-                                <div class="border border-1 border-secondary rounded-3" style="padding: 10px;">
-                                    <!--정보입력-->
-                                    <script type="text/javascript">
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 예약 정보-->
+				<div id="content2" class="content">
+
+					<div class="row d-flex justify-content-center"
+						style="margin: 50px;">
+						<div class="col border-top border-secondary border-4"
+							style="max-width: 1000px; min-width: 100px; font-size: 24px; text-align: left; padding: 30px;">
+
+							예약자 정보
+							<div class="border border-1 border-secondary rounded-3"
+								style="padding: 10px;">
+								<!--정보입력-->
+								<script type="text/javascript">
                                     
                                     <%
-                                    ReservationBean rbean = scheduleMgr.getReservationBean(1);
+                                    ReservationBean rbean = scheduleMgr.getReservationBean(userbean.getNum());
                                     if(rbean.getNum()==0){
                                     	//없는거
                                     	%>
@@ -464,12 +473,12 @@
                                     }else{
                                     %>
                                    
-                                    var reservation_username1 = '<%=scheduleMgr.getReservationBean(1).getName() %>';
-                                    var reservation_phonnum1 = '<%=scheduleMgr.getReservationBean(1).getPhonenum() %>';
-                                    var reservation_email1 = '<%=scheduleMgr.getReservationBean(1).getEmail()%>';
-                                    var reservation_population1 = '<%=scheduleMgr.getReservationBean(1).getPopulation() %>';
-                                    var reservation_carflag1 = '<%=scheduleMgr.getReservationBean(1).getCarflag()%>';
-                                    var reservation_date1 = '<%=scheduleMgr.getReservationBean(1).getReservdate()%>';
+                                    var reservation_username1 = '<%=scheduleMgr.getReservationBean(userbean.getNum()).getName() %>';
+                                    var reservation_phonnum1 = '<%=scheduleMgr.getReservationBean(userbean.getNum()).getPhonenum() %>';
+                                    var reservation_email1 = '<%=scheduleMgr.getReservationBean(userbean.getNum()).getEmail()%>';
+                                    var reservation_population1 = '<%=scheduleMgr.getReservationBean(userbean.getNum()).getPopulation() %>';
+                                    var reservation_carflag1 = '<%=scheduleMgr.getReservationBean(userbean.getNum()).getCarflag()%>';
+                                    var reservation_date1 = '<%=scheduleMgr.getReservationBean(userbean.getNum()).getReservdate()%>';
                                     <%
                                     }
                                     %>
@@ -483,70 +492,73 @@
                                         document.getElementById("reservation_datePrint").value = reservation_date1;
                                     });
                                     </script>
-                                    <!--정보입력-->
-                                    <div class="row" style="font-size: 14px;">
-                                    <form action="reservationFixProc.jsp" id="reservationFixFrom">
-                                        <!--이름 + 전화번호 + 이메일 입력-->
-                                        <div class="row justify-content-md-center">
-                                            <div class="col">
-                                              이 름
-                                            </div>
-                                            <div class="col-md-auto"> 
-                                            </div>
-                                            <input type="text" class="col" id="reservation_usernamePrint" value="없어요" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                              
-                                            <!--<input type="text" class="form-control" placeholder="aaa123" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">-->
-                                          </div>
-                                          <div class="row">
-                                            <div class="col">
-                                                전 화 번 호
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <input type="text" class="col" id="reservation_phonnumPrint" name="phonNum" value="아니 없다고요" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                          <div class="row justify-content-md-center">
-                                            <div class="col">
-                                                이 메 일
-                                            </div>
-                                            <div class="col-md-auto"> 
-                                            </div>
-                                            <input type="text" class="col" id="reservation_emailPrint" name="email" value="없다니깐요?!" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                          <div class="row">
-                                            <div class="col">
-                                                예 약 인 원
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <input type="text" class="col" id="reservation_populationPrint" name="population" value="예약이 없다고요" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                          <div class="row justify-content-md-center">
-                                            <div class="col">
-                                                차 량
-                                            </div>
-                                            <div class="col-md-auto"> 
-                                            </div>
-                                            <input type="text" class="col" id="reservation_carflagPrint" name="parking" value="1러3245" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                          <div class="row">
-                                            <div class="col">
-                                                예 약 날 짜 
-                                            </div>
-                                            <div class="col-md-auto">
-                                            </div>
-                                            <input type="text" class="col" id="reservation_datePrint" name="reservationDate" value="2024-05-01" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          </div>
-                                        </form>
-                                    </div>
-                                    
-                                    <!--예약변경+예약취소 버튼-->
-                                    <div style="text-align: right;">
-                                        <button type="button" class="btn btn-warning" onclick="fixedReservation()">수정</button>
-                                        <button type="button" class="btn btn-light" onclick="deleteReservation()">삭제</button>
-                                        <form action="reservationDeleteProc.jsp" id="reservationDeleteForm"></form>
-                                    </div>
-                                    <script>
+								<!--정보입력-->
+								<div class="row" style="font-size: 14px;">
+									<form action="reservationFixProc.jsp" id="reservationFixFrom">
+										<!--이름 + 전화번호 + 이메일 입력-->
+										<div class="row justify-content-md-center">
+											<div class="col">이 름</div>
+											<div class="col-md-auto"></div>
+											<input type="text" class="col" id="reservation_usernamePrint"
+												value="없어요" aria-label="Recipient's username"
+												aria-describedby="basic-addon2"
+												style="pointer-events: none;">
+
+											<!--<input type="text" class="form-control" placeholder="aaa123" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">-->
+										</div>
+										<div class="row">
+											<div class="col">전 화 번 호</div>
+											<div class="col-md-auto"></div>
+											<input type="text" class="col" id="reservation_phonnumPrint"
+												name="phonNum" value="아니 없다고요"
+												aria-label="Recipient's username"
+												aria-describedby="basic-addon2">
+										</div>
+										<div class="row justify-content-md-center">
+											<div class="col">이 메 일</div>
+											<div class="col-md-auto"></div>
+											<input type="text" class="col" id="reservation_emailPrint"
+												name="email" value="없다니깐요?!"
+												aria-label="Recipient's username"
+												aria-describedby="basic-addon2">
+										</div>
+										<div class="row">
+											<div class="col">예 약 인 원</div>
+											<div class="col-md-auto"></div>
+											<input type="text" class="col"
+												id="reservation_populationPrint" name="population"
+												value="예약이 없다고요" aria-label="Recipient's username"
+												aria-describedby="basic-addon2">
+										</div>
+										<div class="row justify-content-md-center">
+											<div class="col">차 량</div>
+											<div class="col-md-auto"></div>
+											<input type="text" class="col" id="reservation_carflagPrint"
+												name="parking" value="1러3245"
+												aria-label="Recipient's username"
+												aria-describedby="basic-addon2">
+										</div>
+										<div class="row">
+											<div class="col">예 약 날 짜</div>
+											<div class="col-md-auto"></div>
+											<input type="text" class="col" id="reservation_datePrint"
+												name="reservationDate" value="2024-05-01"
+												aria-label="Recipient's username"
+												aria-describedby="basic-addon2">
+										</div>
+									</form>
+								</div>
+
+								<!--예약변경+예약취소 버튼-->
+								<div style="text-align: right;">
+									<button type="button" class="btn btn-warning"
+										onclick="fixedReservation()">수정</button>
+									<button type="button" class="btn btn-light"
+										onclick="deleteReservation()">삭제</button>
+									<form action="reservationDeleteProc.jsp"
+										id="reservationDeleteForm"></form>
+								</div>
+								<script>
                                     	function fixedReservation(){
                                     		const phoneInput = document.getElementById('reservation_phonnumPrint');
                                             const phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
@@ -596,108 +608,146 @@
                                             alert("삭제되었습니다.");
                                         }
                                     </script>
-                                    
-                                </div>
-                            </div> 
-                    </div>
-                   </div>
-                   
-                    <!-- 구매 내역 -->
-                    <div id="content3" class="content">
-                        <div class="row d-flex justify-content-center" style="margin: 50px;">
-                            <div class="col border-top border-secondary border-4" style="max-width: 1000px; min-width: 100px; padding: 30px;">
-                                <table id="datatablesSimple" style="margin-top: 3px;">  
-                                <thead>
-                                        <tr>
-                                            <th>주문 번호</th>
-                                            <th>상품명</th>
-                                            <th>결제일</th>
-                                            <th>금 액</th>
-                                            <th>상 태</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Num</th>
-                                            <th>Title</th>
-                                            <th>Name</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    <%
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 구매 내역 -->
+				<div id="content3" class="content">
+					<div class="row d-flex justify-content-center"
+						style="margin: 50px;">
+						<div class="col border-top border-secondary border-4"
+							style="max-width: 1000px; min-width: 100px; padding: 30px;">
+							<table id="datatablesSimple" style="margin-top: 3px;">
+								<thead>
+									<tr>
+										<th>주문 번호</th>
+										<th>상품명</th>
+										<th>결제일</th>
+										<th>금 액</th>
+										<th>상 태</th>
+
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Num</th>
+										<th>Title</th>
+										<th>Name</th>
+										<th>Age</th>
+										<th>Start date</th>
+
+									</tr>
+								</tfoot>
+								<tbody>
+									<%
                                     	for(int i = 0 ; i < scheduleMgr.getUserPayItemList(1).size();i++){
                                     %>
-                                        <tr>
-                                            <td id="payItem_NumPrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getNum()%></td>
-                                            <td id="payItem_namePrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getNum()%></td>
-                                            <td id="payItem_datePrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getPaydate()%></td>
-                                            <td id="payItem_pricePrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getNum()%></td>
-                                            <td id="payItem_sellflagPrint"><%=scheduleMgr.getUserPayItemList(1).get(i).getPayback()%></td>
-                                            
-                                        </tr>
-                                        <%
+									<tr>
+									<!-- 결제 내역을 리스트로 띄워준다. -->
+										<td id="payItem_NumPrint"><%=scheduleMgr.getUserPayItemList(userbean.getNum()).get(i).getNum()%></td>
+										<td id="payItem_namePrint"><%=scheduleMgr.getUserPayItemList(userbean.getNum()).get(i).getNum()%></td>
+										<td id="payItem_datePrint"><%=scheduleMgr.getUserPayItemList(userbean.getNum()).get(i).getPaydate()%></td>
+										<td id="payItem_pricePrint"><%=scheduleMgr.getUserPayItemList(userbean.getNum()).get(i).getNum()%></td>
+										<td id="payItem_sellflagPrint"><%=scheduleMgr.getUserPayItemList(userbean.getNum()).get(i).getPayback()%></td>
+
+									</tr>
+									<%
                                         }
                                         %>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
-                        
+								</tbody>
+							</table>
+						</div>
+
+					</div>
 
 
 
-                    </div>
-                    <!-- 개인 정보 -->
-                    <div id="content4" class="content">
-                        <div class="row d-flex justify-content-center" style="margin: 50px;">
-                            <div class="col border-top border-secondary border-4" style="max-width: 1000px; min-width: 100px; font-size: 24px; text-align: left; padding: 30px;">
-                            
-                                회원 정보
-                                <form id = "myForm" action = "myPageUserInfoProc.jsp" method="get">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">회원 번호</span>
-                                    <input type="text" class="form-control" placeholder="<%=scheduleMgr.getUserBean(1).getNum()%>" aria-label="username" aria-describedby="basic-addon1" style="pointer-events: none;">
-                                </div>
-                                  
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon2">상품정보</span>
-                                    <input type="text" class="form-control" placeholder="<%=scheduleMgr.userItem(1).getItemname() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                    <span class="input-group-text" id="basic-addon2">이용기간</span>
-                                    <input type="text" class="form-control" placeholder="<%=scheduleMgr.userItem(1).getFcperiod() %> 까지" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                </div>
-                                <div class="form-text" id="basic-addon4">상품정보가 다를경우 따지지 마세요</div>
-                                  
-                                <div class="mb-3">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon2">이름</span>
-                                        <input type="text" class="form-control" placeholder="<%=scheduleMgr.getUserBean(1).getName() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                        <span class="input-group-text" id="basic-addon2">계정</span>
-                                        <input type="text" class="form-control" placeholder="<%=scheduleMgr.getUserBean(1).getId() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon2">연락처</span>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="<%=scheduleMgr.getUserBean(1).getPhontnum() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" >
-                                        <span class="input-group-text" id="basic-addon2">이메일</span>
-                                        <input type="text" class="form-control" id="email" name="email" placeholder="<%=scheduleMgr.getUserBean(1).getEmail() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" >
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon2">아이디</span>
-                                        <input type="text" class="form-control" placeholder="<%=scheduleMgr.getUserBean(1).getId() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                        <span class="input-group-text" id="basic-addon2">비밀번호</span>
-                                        <input type="text" class="form-control" id="password" name="password" placeholder="<%=scheduleMgr.getUserBean(1).getPwd() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" >
-                                    </div>
-                                </div>
-                                  <!--주소 입력-->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon2">주소</span>
-                                        <input type="text" class="form-control" id="address" name="address" value="<%=scheduleMgr.getUserBean(1).getPostnum() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                        <button type="button" style="font-size: 14px;" onclick="DaumPostcode()">우편번호 찾기</button>
-                                        <script>
+
+				</div>
+				<!-- 개인 정보 -->
+				<div id="content4" class="content">
+					<div class="row d-flex justify-content-center"
+						style="margin: 50px;">
+						<div class="col border-top border-secondary border-4"
+							style="max-width: 1000px; min-width: 100px; font-size: 24px; text-align: left; padding: 30px;">
+
+							회원 정보
+							<form id="myForm" action="myPageUserInfoProc.jsp" method="get">
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">회원 번호</span> <input
+										type="text" class="form-control"
+										placeholder="<%=scheduleMgr.getUserBean(userbean.getNum()).getNum()%>"
+										aria-label="username" aria-describedby="basic-addon1"
+										style="pointer-events: none;">
+								</div>
+
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon2">상품정보</span> <input
+										type="text" class="form-control"
+										placeholder="<%=scheduleMgr.userItem(userbean.getNum()).getItemname() %>"
+										aria-label="Recipient's username"
+										aria-describedby="basic-addon2" style="pointer-events: none;">
+									<span class="input-group-text" id="basic-addon2">이용기간</span> <input
+										type="text" class="form-control"
+										placeholder="<%=scheduleMgr.userItem(userbean.getNum()).getFcperiod() %> 까지"
+										aria-label="Recipient's username"
+										aria-describedby="basic-addon2" style="pointer-events: none;">
+								</div>
+								<div class="form-text" id="basic-addon4">상품정보가 다를경우 따지지
+									마세요</div>
+
+								<div class="mb-3">
+									<div class="input-group mb-3">
+										<span class="input-group-text" id="basic-addon2">이름</span> <input
+											type="text" class="form-control"
+											placeholder="<%=scheduleMgr.getUserBean(userbean.getNum()).getName() %>"
+											aria-label="Recipient's username"
+											aria-describedby="basic-addon2" style="pointer-events: none;">
+										<span class="input-group-text" id="basic-addon2">계정</span> <input
+											type="text" class="form-control"
+											placeholder="<%=scheduleMgr.getUserBean(userbean.getNum()).getId() %>"
+											aria-label="Recipient's username"
+											aria-describedby="basic-addon2" style="pointer-events: none;">
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text" id="basic-addon2">연락처</span> <input
+											type="text" class="form-control" id="phone" name="phone"
+											placeholder="<%=scheduleMgr.getUserBean(userbean.getNum()).getPhontnum() %>"
+											aria-label="Recipient's username"
+											aria-describedby="basic-addon2"> <span
+											class="input-group-text" id="basic-addon2">이메일</span> <input
+											type="text" class="form-control" id="email" name="email"
+											placeholder="<%=scheduleMgr.getUserBean(userbean.getNum()).getEmail() %>"
+											aria-label="Recipient's username"
+											aria-describedby="basic-addon2">
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text" id="basic-addon2">아이디</span> <input
+											type="text" class="form-control"
+											placeholder="<%=scheduleMgr.getUserBean(userbean.getNum()).getId() %>"
+											aria-label="Recipient's username"
+											aria-describedby="basic-addon2" style="pointer-events: none;">
+										<span class="input-group-text" id="basic-addon2">비밀번호</span> <input
+											type="text" class="form-control" id="password"
+											name="password"
+											placeholder="<%=scheduleMgr.getUserBean(userbean.getNum()).getPwd() %>"
+											aria-label="Recipient's username"
+											aria-describedby="basic-addon2">
+									</div>
+								</div>
+								<!--주소 입력-->
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon2">주소</span> <input
+										type="text" class="form-control" id="address" name="address"
+										value="<%=scheduleMgr.getUserBean(userbean.getNum()).getPostnum() %>"
+										aria-label="Recipient's username"
+										aria-describedby="basic-addon2" style="pointer-events: none;">
+									<button type="button" style="font-size: 14px;"
+										onclick="DaumPostcode()">우편번호 찾기</button>
+									<script>
                                         	function DaumPostcode() {
                                         		new daum.Postcode({
                                                     oncomplete: function(data) {
@@ -714,17 +764,23 @@
                                                 }).open();
                                             }
                                         </script>
-                                </div>
-                                 
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon2">소속</span>
-                                    <input type="text" class="form-control" placeholder="<%=scheduleMgr.getUserBean(1).getCompany() %>" aria-label="Recipient's username" aria-describedby="basic-addon2" style="pointer-events: none;">
-                                    <div class="form-text" id="basic-addon4" style="font-size: 14px;">*소속변경은 직접 문의해주세요</div>
-                                </div>
-                                <button type="button" class="btn btn-secondary" onclick = "sendFixedUserInfo()" style="margin: 10px;">변경사항 저장하기</button>
-                                
-                                </form>
-                                <script>
+								</div>
+
+								<div class="input-group">
+									<span class="input-group-text" id="basic-addon2">소속</span> <input
+										type="text" class="form-control"
+										placeholder="<%=scheduleMgr.getUserBean(userbean.getNum()).getCompany() %>"
+										aria-label="Recipient's username"
+										aria-describedby="basic-addon2" style="pointer-events: none;">
+									<div class="form-text" id="basic-addon4"
+										style="font-size: 14px;">*소속변경은 직접 문의해주세요</div>
+								</div>
+								<button type="button" class="btn btn-secondary"
+									onclick="sendFixedUserInfo()" style="margin: 10px;">변경사항
+									저장하기</button>
+
+							</form>
+							<script>
                             function sendFixedUserInfo(){
                                 //연락처 이메일 비밀번호 주소를 확인하고 폼으로 전송해야한다.
                                 //전화번호 확인하는 법
@@ -761,10 +817,10 @@
                                 
                             }
                         </script>
-                            </div> 
-                    </div>
-                    </div>
-                    <script>
+						</div>
+					</div>
+				</div>
+				<script>
                         // 버튼 클릭 시 호출되는 함수
                         function showContent(index) {
                             // 모든 콘텐츠 숨김 처리
@@ -777,27 +833,23 @@
                             contentToShow.classList.add('active');
                         }
                     </script>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
+			</main>
+
+		</div>
+	</div>
+	<%@ include file="Footer.jsp"%>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/scripts.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+		crossorigin="anonymous"></script>
+	<script src="assets/demo/chart-area-demo.js"></script>
+	<script src="assets/demo/chart-bar-demo.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/datatables-simple-demo.js"></script>
+</body>
 </html>

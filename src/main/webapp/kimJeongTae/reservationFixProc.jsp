@@ -1,3 +1,4 @@
+<%@page import="kimJeongTae.UserBean"%>
 <%@page import="kimJeongTae.ReservationBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,15 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
+<%
+	//String userId = "john_doe";
+	String userId = "aaa";
+	UserBean userbean = mgr.getUserBean(userId);
+	
+%>
 <%
 	ReservationBean bean = new ReservationBean();
 
-	bean.setUser(1);
+	bean.setUser(userbean.getNum());
 	bean.setPhonenum(request.getParameter("phonNum"));
 	bean.setEmail(request.getParameter("email"));
 	bean.setPopulation(Integer.parseInt(request.getParameter("population")));

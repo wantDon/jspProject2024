@@ -24,12 +24,10 @@ boolean flag = mgr.CheckUserItem("aaa");
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ include file="Header.jsp" %>
 	<main>
 		<style>
 main {
-	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0),
-		rgba(255, 255, 255, 1)), url("img/reviewBackground.png");
 	align-items: center;
 	background-size: 100% 400px;
 	background-repeat: no-repeat;
@@ -287,6 +285,7 @@ main {
                         });
                     </script>
 	</main>
+	<%@ include file="Footer.jsp" %>
 </body>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

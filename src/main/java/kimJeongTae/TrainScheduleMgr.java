@@ -302,7 +302,6 @@ public class TrainScheduleMgr {
 	}
 	
 	public healthitemBean userItem(int userNum) {
-		
 		PayitemsBean item = null;
 		Vector<PayitemsBean> payItemList = getPayitemsList(userNum);
 		//가장 최근의 구매 상품 불러오기
@@ -312,8 +311,6 @@ public class TrainScheduleMgr {
 				item = payItemList.get(i);
 			}
 		}
-		
-		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -329,6 +326,7 @@ public class TrainScheduleMgr {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				
 				item01.setNum(rs.getInt("num"));
 				item01.setItemname(rs.getString("itemname"));
 				item01.setHcontent(rs.getString("hcontent"));
@@ -347,7 +345,7 @@ public class TrainScheduleMgr {
 				item01.setSellperiod(rs.getString("sellperiod"));
 				item01.setPrice(rs.getInt("price"));
 				item01.setSellflag(rs.getBoolean("sellflag"));
-				
+				System.out.println(item01.getNum());
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -356,6 +354,50 @@ public class TrainScheduleMgr {
 		}
 		
 		return item01;
+	}
+	
+	public UserBean getUserBean(String userId) {
+		UserBean userbean = new UserBean();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		try {
+			con = pool.getConnection();
+			sql = "SELECT*\r\n"
+					+ "FROM user\r\n"
+					+ "WHERE id = ?;";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {	
+				userbean.setNum(rs.getInt(1));
+				userbean.setId(rs.getString(2));
+				userbean.setPwd(rs.getString(3));
+				userbean.setName(rs.getString(4));
+				userbean.setGander(rs.getBoolean(5));
+				userbean.setBirth(rs.getString(6));
+				userbean.setEmail(rs.getString(7));
+				userbean.setPostnum(rs.getString(8));
+				userbean.setPhontnum(rs.getString(9));
+				userbean.setCity(rs.getString(10));
+				userbean.setStreetaddr(rs.getString(11));
+				userbean.setJoindate(rs.getString(12));
+				userbean.setPoint(rs.getInt(13));
+				userbean.setSns(rs.getInt(14));
+				userbean.setSnsid(rs.getString(15));
+				userbean.setSnspwd(rs.getString(16));
+				userbean.setAuthority(rs.getInt(17));
+				userbean.setCompany(rs.getInt(18));
+				userbean.setFrnum(rs.getInt(19));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			pool.freeConnection(con,pstmt,rs);
+		}
+		
+		return userbean;
 	}
 	//========================예약 정보=================================================
 	public ReservationBean getReservationBean(int user) {
@@ -482,6 +524,15 @@ public class TrainScheduleMgr {
 				return vlist01;
 	}
 
+	public Vector<ChargeinfoBean> getUserChargeinfoList(int userNum){
+		Vector<ChargeinfoBean> vlist = new Vector<ChargeinfoBean>();
+		
+		
+		
+		
+		return vlist;
+	}
+	
 	//========================== 개인 정보 =================================
 	public UserBean getUserBean(int userNum) {
 		UserBean userbean = new UserBean();
