@@ -124,6 +124,9 @@ public class UserMgr {
 	        return userId;
 	    }
 		
-		
+		//회원 정보
+		public UserBean getMember(String id) {
+			return null;
+		}
 	    
 }

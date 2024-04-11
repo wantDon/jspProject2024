@@ -3,7 +3,7 @@ package hanSeungEun;
 public class ReservationBean {
 	
 	int num;
-	int user;
+	int user;//0, 1
 	String name;
 	String pwd;
 	String phonenum;
@@ -15,6 +15,25 @@ public class ReservationBean {
 	int carflag;
 	int userflag;
 	String time;
+	
+public ReservationBean() {}
+	public ReservationBean(int num, int user, String name, String pwd, String phonenum, String email, int population, int ccflag, int frnum, String reservdate, int carflag, int userflag, String time) {
+		
+		this.num = num;
+		this.user = user;
+		this.name = name;
+		this.pwd = pwd;
+		this.phonenum = phonenum;
+		this.email = email;
+		this.population = population;
+		this.ccflag = ccflag;
+		this.frnum = frnum;
+		this.reservdate = reservdate;
+		this.carflag = carflag;
+		this.userflag = userflag;
+		this.time = time;
+		
+	}
 	
 	public int getNum() {
 		return num;
