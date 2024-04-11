@@ -7,7 +7,7 @@
 </head>
 <body>														
 <script type="text/javascript">
-  var naver_id_login = new naver_id_login("d5LTGWv1q9MJSH1J27mw", "http://113.198.238.107/teamProject_jsp/hanSeungEun/login/naverCallback.jsp");
+  var naver_id_login = new naver_id_login("d5LTGWv1q9MJSH1J27mw", "http://localhost/teamProject_jsp/jeongJiYoon/HomePage.jsp");
   // 접근 토큰 값 출력                                                          
   $('body').append('<h4>접속토큰:'+naver_id_login.oauthParams.access_token+'</h4>');
   // 네이버 사용자 프로필 조회
@@ -25,12 +25,9 @@
 	let body = $('body');
 	body.append('로그인 성공!');
 	body.append('<h4>아이디:'+id+'</h4>');
-	body.append('<h4>이름:'+name+'</h4>');
-	body.append('<h4>이메일:'+email+'</h4>');
-	body.append('<h4>전화번호:'+mobile+'</h4>');
-	body.append('<h4>출생년도:'+birthyear+'</h4>');
-	body.append('<h4>생년월일:'+birth+'</h4>');
-	body.append('<h4>성별:'+gender+'</h4>');
+	
+	// 로그인 성공 후 다른 페이지로 이동
+    window.location.href = 'login.jsp';
   }
 </script>
 </body>

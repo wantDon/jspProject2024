@@ -47,7 +47,7 @@ String path=request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
 		var naverLogin = new naver.LoginWithNaverId(
 				{
 					clientId: "d5LTGWv1q9MJSH1J27mw", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-					callbackUrl: "http://113.198.238.107/teamProject_jsp/hanSeungEun/login/naverCallback.jsp", 
+					callbackUrl: "http://localhost/teamProject_jsp/jeongJiYoon/HomePage.jsp", 
 					// 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
 					isPopup: false,
 					callbackHandle: true
