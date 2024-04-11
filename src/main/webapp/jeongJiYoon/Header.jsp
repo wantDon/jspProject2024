@@ -1,6 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
 String id = (String)session.getAttribute("idKey");
+String homePath = request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
+String programPath = request.getContextPath() + "/jeongJiYoon/ProgramPage.jsp";
+String membershipPath = request.getContextPath() + "/hanSeungEun/membership/membership.jsp";
+String reviewPath = request.getContextPath() + "/jeongJiYoon/ReviewPage.jsp";
+String qnaPath = request.getContextPath() + "/jeongJiYoon/QnaPage.jsp";
+String imgPath = request.getContextPath() + "/jeongJiYoon/img/logo.png";
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,26 +135,26 @@ String id = (String)session.getAttribute("idKey");
     <header>
         <nav>
             <div class="logo" onclick="window.location.href='../index.jsp'">
-                <img src="../img/logo.png" alt="로고 이미지">
+                <a href="<%=homePath%>"><img src="<%=imgPath%>" alt="로고 이미지"></a>
             </div>
             <button class="navbar-toggle">&#9776;</button>
             <div class="menu-collapse">
                 <button class="close-btn">&times;</button>
                 <ul>
-                    <li><a href="../../jeongJiYoon/ProgramPage.jsp">Program</a></li>
+                    <li><a href="<%=programPath%>">Program</a></li>
                     <%
 						String log1="";
-						if(id == null) log1 ="../../hanSeungEun/reservation/reservation2.jsp";
-						else log1 = "../../hanSeungEun/reservation/reservation1.jsp";
+						if(id == null) log1 =request.getContextPath() + "/hanSeungEun/reservation/reservation2.jsp";
+						else log1 = request.getContextPath() + "/hanSeungEun/reservation/reservation1.jsp";
 					%>
                     <li><a href="<%=log1%>">Reservation</a></li>
-                    <li><a href="../membership/membership.jsp">Membership</a></li>
-                    <li><a href="#">Review</a></li>
-                    <li><a href="#">Q&A</a></li>
+                    <li><a href="<%=membershipPath%>">Membership</a></li>
+                    <li><a href="<%=reviewPath%>">Review</a></li>
+                    <li><a href="<%=qnaPath%>">Q&A</a></li>
                     <%
 						String log="";
-						if(id == null) log ="<a href=../hanSeungEun/login/login.jsp>로그인</a>";
-						else log = "<a href=../hanSeungEun/login/logout.jsp>로그아웃</a>";
+						if(id == null) log ="<a href=" + request.getContextPath() + "/hanSeungEun/login/login.jsp>" + "로그인</a>";
+						else log = "<a href=" + request.getContextPath() + "/hanSeungEun/login/logout.jsp>" + "로그아웃</a>";
 					%>
 					<li >
                      	 <a href="#"><%=id%>님</a> 

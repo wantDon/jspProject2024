@@ -41,7 +41,7 @@ public class ReservationMgr {
 		return branches;
 	}
 
-	// 비회원 예약
+	// 회원, 비회원 예약
 	public boolean inRes(ReservationBean bean, String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -53,17 +53,21 @@ public class ReservationMgr {
 				//회원예약
 				UserMgr uMger = new UserMgr();
 				UserBean uBean = uMger.getMember(id);
+				bean.setUser(uBean.getNum());
 				bean.setName(uBean.getName());
+				bean.setPhonenum(uBean.getPhone());
+				bean.setEmail(uBean.getEmail());
+				bean.setFrnum(uBean.getFrnum());
 			}
-			
-			sql = "insert into reservation (name, phonenum, population, frnum, reservdate, time) values(?,?,?,?,?,?)";
+			sql = "insert into reservation (name, pwd, phonenum, population, frnum, reservdate, time) values(?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getName());
-			pstmt.setString(2, bean.getPhonenum());
-			pstmt.setInt(3, bean.getPopulation());
-			pstmt.setInt(4, bean.getFrnum());
-			pstmt.setString(5, bean.getReservdate());
-			pstmt.setString(6, bean.getTime());
+			pstmt.setString(2, bean.getPwd());
+			pstmt.setString(3, bean.getPhonenum());
+			pstmt.setInt(4, bean.getPopulation());
+			pstmt.setInt(5, bean.getFrnum());
+			pstmt.setString(6, bean.getReservdate());
+			pstmt.setString(7, bean.getTime());
 			if (pstmt.executeUpdate() == 1)
 				flag = true;
 		} catch (Exception e) {
@@ -73,10 +77,6 @@ public class ReservationMgr {
 		}
 		return flag;
 	}
-	
-	
-	// 예약 조회
-	
 	
 	
 	// 예약번호 찾기

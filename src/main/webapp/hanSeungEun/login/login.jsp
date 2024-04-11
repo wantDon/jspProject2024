@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-String path=".";
+String path=request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
 %>
       
 <html>
@@ -14,7 +14,7 @@ String path=".";
 <body class="allstyles">
     <div class="wrap vertical_center">
         <div class="logo_wrap">
-            <a href="../index.jsp"><img src="../img/logo.png" alt="로고" class="img_logo"></a>
+            <a href="<%=path%>"><img src="../img/logo.png" alt="로고" class="img_logo"></a>
         </div><!--logo_wrap-->
 
         <div class="input_wrap">

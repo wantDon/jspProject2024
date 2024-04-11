@@ -11,6 +11,8 @@ String path="..";
     <title>멤버쉽</title>
 </head>
 <body class="allstyles">
+<%@ include file="../../jeongJiYoon/Header.jsp" %> <!-- 헤더 include -->
+
     <div class="wrap">
     	<div class="main_bg">
             <div class="res_introduce">
@@ -68,5 +70,6 @@ String path="..";
             </div>
         </div><!--content4-->
     </div><!--wrap-->
+    <%@ include file="../../jeongJiYoon/Footer.jsp" %> <!-- 풋터 include -->
 </body>
 </html>

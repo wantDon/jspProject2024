@@ -63,6 +63,8 @@ int week = cal.get(Calendar.DAY_OF_WEEK); // 1(일)~7(토)
 
 </head>
 <body onload="showSelectedDate(<%=td%>)">
+<%@ include file="../../jeongJiYoon/Header.jsp" %> <!-- 헤더 include -->
+
 	<div class="wrap allwrap">
 		<div class="main_bg">
 			<div class="res_introduce">
@@ -244,5 +246,6 @@ int week = cal.get(Calendar.DAY_OF_WEEK); // 1(일)~7(토)
 	        document.getElementById("selectTime").value = value;
 	    }
 	</script>
+	<%@ include file="../../jeongJiYoon/Footer.jsp" %> <!-- 풋터 include -->
 </body>
 </html>

@@ -12,7 +12,7 @@
     <input id="tab1" type="radio" name="tabs" checked>
     <label for="tab1">예약조회</label>
     <section id="content1">
-        <form name="findRevFrom" method="post" action="findRevProc.jsp">
+        <form name="findRevFrom" method="post" action="revInfo.jsp">
             <p>예약 시 작성했던 회원정보를 입력해주세요.</p>
              <div class="revNum_input center">
                 <span class="span_font">예약번호</span>
@@ -30,11 +30,10 @@
                 <span class="span_font">비밀번호</span>
                 <input name="pwd" placeholder="비밀번호 입력">
             </div>
-            <div class="center">
-                <input type="submit" id="btn_ok" class="center" onclick="setInnerHTML()" value="확인">
+            <div class="center" style="display:block">
+                <input type="submit" id="btn_ok" value="확인">
         		<button type="button" class="btn_scRev" onclick="window.location.href='findRev.jsp'">예약번호 찾기</button>
             </div>
-            
         </form>
     </section>
 </div>
