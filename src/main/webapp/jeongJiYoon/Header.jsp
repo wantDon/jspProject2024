@@ -135,11 +135,11 @@ String id = (String)session.getAttribute("idKey");
             <div class="menu-collapse">
                 <button class="close-btn">&times;</button>
                 <ul>
-                    <li><a href="../jeongJiYoon/ProgramPage.jsp">Program</a></li>
+                    <li><a href="../../jeongJiYoon/ProgramPage.jsp">Program</a></li>
                     <%
 						String log1="";
-						if(id == null) log1 ="../reservation/reservation2.jsp";
-						else log1 = "../reservation/reservation1.jsp";
+						if(id == null) log1 ="../../hanSeungEun/reservation/reservation2.jsp";
+						else log1 = "../../hanSeungEun/reservation/reservation1.jsp";
 					%>
                     <li><a href="<%=log1%>">Reservation</a></li>
                     <li><a href="../membership/membership.jsp">Membership</a></li>

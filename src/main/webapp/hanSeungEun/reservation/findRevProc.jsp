@@ -14,7 +14,7 @@
 <head>
 <meta charset="EUC-KR">
 <link rel="stylesheet" href="findRev.css">
-<title>예약번호 조회</title>
+<title>예약번호 찾기</title>
 <script>
      // 예약 조회 버튼 눌렀을 때 로그인 페이지 이동      
      function revcheck() {

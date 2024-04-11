@@ -42,13 +42,20 @@ public class ReservationMgr {
 	}
 
 	// 비회원 예약
-	public boolean inRes(ReservationBean bean) {
+	public boolean inRes(ReservationBean bean, String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
+			if(id!=null) {
+				//회원예약
+				UserMgr uMger = new UserMgr();
+				UserBean uBean = uMger.getMember(id);
+				bean.setName(uBean.getName());
+			}
+			
 			sql = "insert into reservation (name, phonenum, population, frnum, reservdate, time) values(?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getName());
@@ -66,6 +73,7 @@ public class ReservationMgr {
 		}
 		return flag;
 	}
+	
 	
 	// 예약 조회
 	
