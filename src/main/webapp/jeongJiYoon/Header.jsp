@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%
+String id = (String)session.getAttribute("idKey");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,22 +128,35 @@
 <body>
     <header>
         <nav>
-            <div class="logo" onclick="window.location.href='HomePage.jsp'">
-                <img src="img/logo.png" alt="로고 이미지">
+            <div class="logo" onclick="window.location.href='../index.jsp'">
+                <img src="../img/logo.png" alt="로고 이미지">
             </div>
             <button class="navbar-toggle">&#9776;</button>
             <div class="menu-collapse">
                 <button class="close-btn">&times;</button>
                 <ul>
-                    <li><a href="ProgramPage.jsp">Program</a></li>
-                    <li><a href="#">Reservation</a></li>
-                    <li><a href="#">Membership</a></li>
-                    <li><a href="ReviewPage.jsp">Review</a></li>
-                    <li><a href="QnaPage.jsp">Q&A</a></li>
-                    <li class="login">
-                     	   <a href="#">Login</a>
+                    <li><a href="../jeongJiYoon/ProgramPage.jsp">Program</a></li>
+                    <%
+						String log1="";
+						if(id == null) log1 ="../reservation/reservation2.jsp";
+						else log1 = "../reservation/reservation1.jsp";
+					%>
+                    <li><a href="<%=log1%>">Reservation</a></li>
+                    <li><a href="../membership/membership.jsp">Membership</a></li>
+                    <li><a href="#">Review</a></li>
+                    <li><a href="#">Q&A</a></li>
+                    <%
+						String log="";
+						if(id == null) log ="<a href=../hanSeungEun/login/login.jsp>로그인</a>";
+						else log = "<a href=../hanSeungEun/login/logout.jsp>로그아웃</a>";
+					%>
+					<li >
+                     	 <a href="#"><%=id%>님</a> 
                     </li>
-                </ul>
+                    <li class="login">
+                     	   <%=log%>
+                    </li>
+                </ul> 
             </div>
         </nav>
     </header>

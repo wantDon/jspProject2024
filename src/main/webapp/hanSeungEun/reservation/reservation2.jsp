@@ -1,6 +1,13 @@
 <%@page import="java.util.Calendar"%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<jsp:useBean id="rMgr" class="hanSeungEun.ReservationMgr" />
+
+<%
+List<String> branches = rMgr.getBranches();
+%>
+
 <%
 request.setCharacterEncoding("utf-8");
 
@@ -43,7 +50,7 @@ int week = cal.get(Calendar.DAY_OF_WEEK); // 1(일)~7(토)
 <script type="text/javascript">
 	function change() {
 		var f = document.frm;
-		f.action = "reservation1.jsp";
+		f.action = "reservation2.jsp";
 		f.submit();
 	}
 	
@@ -55,7 +62,7 @@ int week = cal.get(Calendar.DAY_OF_WEEK); // 1(일)~7(토)
 </script>
 
 </head>
-<body onload="showSelectedYearMonth()">
+<body onload="showSelectedDate(<%=td%>)">
 	<div class="wrap allwrap">
 		<div class="main_bg">
 			<div class="res_introduce">
@@ -75,7 +82,7 @@ int week = cal.get(Calendar.DAY_OF_WEEK); // 1(일)~7(토)
 		<!--res_title_wrap-->
 
 		<div class="res_cnt_wrap">
-			<div class="allcenter res_cnt" style="height:500px">
+			<div class="allcenter res_cnt">
 				<div class="allwrap allstyles">
 					<p class=cnt_text>날짜 및 시간 선택</p>
 					<p class=cnt_text style="margin-left: 525px;">예약 상세내역</p>
@@ -197,22 +204,29 @@ int week = cal.get(Calendar.DAY_OF_WEEK); // 1(일)~7(토)
 					
 				</div>
 				<!--left_cnt-->
-				<form>
+				<form name="insertRes" method="post" action="res2Proc.jsp">
 					<div class="right_cnt">
 						<label class="right_cnt_text1">날짜</label>
-						<input id="selectDate">
+						<input id="selectDate" name="reservdate">
 						<label class="right_cnt_text1">시간</label>
-						<input id="selectTime">
+						<input id="selectTime" name="time">
 						<label class="right_cnt_text1">이름(법인)</label>
-						<input id="name">
+						<input id="name" name="name">
+						<label class="right_cnt_text1">비밀번호</label>
+						<input type="password" id="pwd" name="pwd">
 						<label class="right_cnt_text1">전화번호</label>
-						<input id="phone">
+						<input id="phone" name="phonenum">
 						<label class="right_cnt_text1">예약인원</label>
-						<input id="population">
-						<label class="right_cnt_text1">트레이너</label>
-						<input id="trainer">
+						<input id="population" name="population">
+						<label class="right_cnt_text1">지점</label>
+						<select name="branch" id="branch">
+				            <% for (String branch : branches) { %>
+				                <option value="<%= branch %>"><%= branch %></option>
+				            <% } %>
+       					</select>
 						<p class="right_cnt_text2">예상 상담 시간 1시간 정도<br>소요</p>
-						<button>예약하기</button>
+						<input type = "submit" class="btn_rev" value = "예약하기">
+						<input type = "button" class="btn_scRev" value = "예약조회" onclick="window.location.href='revCheck.jsp'">
 					</div>
 					<!--right_cnt-->
 				</form>

@@ -5,6 +5,7 @@ public class ReservationBean {
 	int num;
 	int user;
 	String name;
+	String pwd;
 	String phonenum;
 	String email;
 	int population;
@@ -13,7 +14,7 @@ public class ReservationBean {
 	String reservdate;
 	int carflag;
 	int userflag;
-	
+	String time;
 	
 	public int getNum() {
 		return num;
@@ -32,6 +33,12 @@ public class ReservationBean {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public String getPhonenum() {
 		return phonenum;
@@ -81,6 +88,14 @@ public class ReservationBean {
 	public void setUserflag(int userflag) {
 		this.userflag = userflag;
 	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	
+	
+
 	
 }
