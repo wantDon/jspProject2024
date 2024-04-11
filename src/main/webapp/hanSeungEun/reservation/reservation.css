@@ -134,6 +134,12 @@
     margin: 0;
 }
 
+.left_cnt_text1 {
+    font-size: 15px;
+    color: #8F8F8F;
+    margin-bottom: 30px;
+}
+
 .calendar {
     width: 45%;
     height: 300px;
@@ -182,7 +188,6 @@
     margin: 40px 0 0 10px; 
     text-align: left;
 }
-
 
 .btn_rev {
 	width: 150px;
@@ -260,15 +265,14 @@
 }
 
 .right_cnt > button {
-    width: 140px;
+    width: 150px;
     height: 40px;
-    background-color: white;
-    border-radius: 50px;
+    background-color: #887159;
     border: solid 1px black;
-    color: black;
-    font-size: 14px;
+    color: white;
+    font-size: 15px;
     text-align: center;
-    margin-top: 35px;
+    margin-top: 45px;
 }
 
 

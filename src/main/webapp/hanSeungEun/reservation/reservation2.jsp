@@ -95,7 +95,7 @@ int week = cal.get(Calendar.DAY_OF_WEEK); // 1(일)~7(토)
 				</div>
 				<!--res_cnt_title-->
 				<div class="allstyles left_cnt">
-					<p class="left_cnt_text">예약 가능한 시간대를 확인하고 날짜 및 시간을 선택하세요.</p>
+					<p class="left_cnt_text1">예약 가능한 시간대를 확인하고 날짜 및 시간을 선택하세요.</p>
 
 					<div class="calendar">
 						<div class="title">
