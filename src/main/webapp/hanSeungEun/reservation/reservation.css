@@ -92,7 +92,7 @@
 
 .res_cnt{
     width: 1000px;
-    height: 500px;
+    height: 550px;
     padding: 50px 60px 0 60px;
     border: solid 1px;
 }
@@ -125,6 +125,7 @@
     padding-top: 5px;
     text-align: left;
     float: left;
+    margin-top:10px;
 }
 
 .left_cnt_text {
@@ -182,49 +183,80 @@
     text-align: left;
 }
 
-.right_cnt > button {
-    width: 150px;
+
+.btn_rev {
+	width: 150px;
     height: 40px;
     background-color: #887159;
     border: solid 1px black;
     color: white;
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
     margin-top: 30px;
 }
 
-.right_cnt > input {
+.btn_scRev{
+	width: 150px;
+    height: 40px;
+    background-color: white;
+    border: solid 1px black;
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#selectDate, #selectTime {
 	width: 140px;
 	height : 30px;
 	margin-left : 20px;
 	margin-top : 5px;
 	box-sizing: border-box;
-	outline: none;
 	border: none;
 	text-align: right;
 	font-size : 15px;
 }
 
 .right_cnt input[id="name"]{
-    width: 110px;
+    width: 115px;
+    height:30px;
+    margin-left:9px;
+    text-align:right;
+    border: none;
+}
+
+.right_cnt input[id="pwd"]{
+    width: 115px;
+    height:30px;
+    margin-top:5px;
+    margin-left:15px;
+    text-align:right;
+    border: none;
 }
 
 .right_cnt input[id="phone"]{
-    width: 120px;
+    width: 115px;
+    height:30px;
+    margin-top:5px;
+    text-align:right;
+    margin-left:15px;
+    border: none;
 }
 
 .right_cnt input[id="population"]{
-    width: 120px;
+    width: 115px;
+    height:30px;
+	margin-top:5px;
+	text-align:right;
+    margin-left:15px;
+    border: none;
 }
 
-.right_cnt input[id="trainer"]{
-    width: 120px;
-}
-
-
-.right_cnt input[id="selectTime"]{
-    padding-left : 85px;
-	box-sizing: border-box;
+#branch {
+	width:115px;
+	height: 30px;
+	margin-top:5px;
+    margin-left:40px;
 }
 
 .right_cnt > button {
