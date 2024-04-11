@@ -210,7 +210,7 @@ int week = cal.get(Calendar.DAY_OF_WEEK); // 1(일)~7(토)
 						<label class="right_cnt_text1">시간</label>
 						<input id="selectTime" name="time">
 						<p class="right_cnt_text2">예상 상담 시간 1시간 정도<br>소요</p>
-						<button>예약하기</button>
+						<button class="btn_rev1">예약하기</button>
 					
 					</div><!--right_cnt-->
 				</form>

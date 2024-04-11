@@ -105,18 +105,19 @@ public class ReservationMgr {
 	}
 	
 	// 예약조회
-		public ReservationBean checkRev(String name, String phonenum, String pwd) {
+		public ReservationBean checkRev(int num, String name, String phonenum, String pwd) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			ReservationBean bean = new ReservationBean();
 			try {
 				con = pool.getConnection();
-				String sql = "select num, name, phonenum, population, frnum, reservdate, time from reservation where name = ? and phonenum = ? and pwd = ?";
+				String sql = "select num, name, phonenum, population, frnum, reservdate, time from reservation where num = ? and name = ? and phonenum = ? and pwd = ?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, name);
-				pstmt.setString(2, phonenum);
-				pstmt.setString(3, pwd);
+				pstmt.setInt(1, num);
+				pstmt.setString(2, name);
+				pstmt.setString(3, phonenum);
+				pstmt.setString(4, pwd);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
 					bean.setNum(rs.getInt("num"));

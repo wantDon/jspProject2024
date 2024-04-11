@@ -12,7 +12,7 @@
     <input id="tab1" type="radio" name="tabs" checked>
     <label for="tab1">예약조회</label>
     <section id="content1">
-        <form name="findRevFrom" method="post" action="revInfo.jsp">
+        <form name="findRevFrom" method="post" action="revCheckProc.jsp">
             <p>예약 시 작성했던 회원정보를 입력해주세요.</p>
              <div class="revNum_input center">
                 <span class="span_font">예약번호</span>
