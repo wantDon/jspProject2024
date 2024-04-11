@@ -4,16 +4,20 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<title>나의 예약 정보</title>
 <link rel="stylesheet" href="findRev.css">
-<title>예약번호 찾기</title>
 </head>
 <body>
 <div class="main vertical_center">
     <input id="tab1" type="radio" name="tabs" checked>
-    <label for="tab1">예약번호 찾기</label>
+    <label for="tab1">나의 예약 정보</label>
     <section id="content1">
         <form name="findRevFrom" method="post" action="findRevProc.jsp">
-            <p>예약 시 작성했던 회원정보를 입력해주세요.</p>
+            <p>회원님의 예약정보입니다.</p>
+            <div class="phone_input center">
+                <span class="span_font">회원번호</span>
+                <input name="phonenum" placeholder="전화번호 입력">
+            </div>
             <div class="name_input center">
                 <span class="span_font">이름</span>
                 <input name="name" placeholder="이름 입력">

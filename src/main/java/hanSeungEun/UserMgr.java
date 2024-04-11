@@ -124,9 +124,48 @@ public class UserMgr {
 	        return userId;
 	    }
 		
-		//회원 정보
+	
+		//회원정보 가져오기
 		public UserBean getMember(String id) {
-			return null;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			UserBean bean = new UserBean();
+			try {
+				con = pool.getConnection();
+				sql = "select * from user where id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					bean.setNum(rs.getInt("num"));
+					bean.setId(rs.getString("id"));
+					bean.setPwd(rs.getString("pwd"));
+					bean.setName(rs.getString("name"));
+					bean.setGender(rs.getInt("gender"));
+					bean.setBirth(rs.getString("birth"));
+					bean.setEmail(rs.getString("email"));
+					bean.setPostnum(rs.getString("postnum"));
+					bean.setPhone(rs.getString("phone"));
+					bean.setCity(rs.getString("city"));
+					bean.setStreetaddr(rs.getString("streetaddr"));
+					bean.setJoindate(rs.getString("joindate"));
+					bean.setPoint(rs.getInt("point"));
+					bean.setSns(rs.getInt("sns"));
+					bean.setSnsid(rs.getString("snsid"));
+					bean.setSnspwd(rs.getString("snspwd"));
+					bean.setAuthority(rs.getInt("authority"));
+					bean.setCompany(rs.getInt("company"));
+					bean.setFrnum(rs.getInt("frnum"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+			return bean;
 		}
+		
 	    
 }

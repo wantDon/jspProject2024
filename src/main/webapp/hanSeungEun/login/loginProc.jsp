@@ -16,7 +16,7 @@
 
         if (authority == 1) { // 권한이 1이면 일반 사용자
         	session.setAttribute("idKey", id);
-            response.sendRedirect("../index.jsp"); // 적절한 관리자 페이지로 이동
+            response.sendRedirect("../../jeongJiYoon/HomePage.jsp"); // 적절한 관리자 페이지로 이동
         } else if (authority == 2) { // 권한이 2이면 트레이너
             session.setAttribute("idKey", id);
             response.sendRedirect("../join.jsp"); // 적절한 트레이너 페이지로 이동

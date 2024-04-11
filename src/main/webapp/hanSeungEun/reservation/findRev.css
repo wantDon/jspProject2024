@@ -89,7 +89,7 @@ p:nth-of-type(1) {
     box-sizing: border-box;
     width: 100%;
     height: auto;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -163,7 +163,6 @@ p:nth-of-type(1) {
 
 /*예약조회 확인 버튼*/
 #btn_ok {
-	display:block;
 	width: 130px;
     height: 40px;
     margin-top: 50px;
@@ -173,6 +172,20 @@ p:nth-of-type(1) {
    	text-align : center;
 }
 
+/*예약 번호 찾기 - 확인 버튼*/
+#btn_ok1{
+	width: 130px;
+    height: 40px;
+    margin-top: 50px;
+    font-size: 15px;
+    background-color: white;
+    border: solid 1px black;
+   	display : block;
+   	margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 /*예약조회-예약번호 찾기 버튼*/
 .btn_scRev{
 	width: 130px;
@@ -180,7 +193,9 @@ p:nth-of-type(1) {
     margin-top: 50px;
     margin-left: 20px;
     font-size: 15px;
-    
+    background-color: #887159;
+    border: solid 1px black;
+    color : white;
 }
 
 .btn_check {
