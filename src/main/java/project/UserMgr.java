@@ -1525,24 +1525,24 @@ import java.util.Vector;
 		}
 		
 		
-		
-		public static void main(String[] args) {
-			UserMgr mgr = new UserMgr();
-			mgr.user500();
-			mgr.trainer9();
-			mgr.company20();
-			mgr.comUser20();
-			mgr.payitem500();
-			mgr.payitem20();
-			mgr.trainerWork10();
-			mgr.trainerWork10();
-			mgr. Charge300();
-			mgr. Charge200();
-			mgr.Review200();
-			mgr.reserve500();
-			mgr.Qna200();
-			System.out.println("입력성공");
-		}
+		//최초 한번만 실행
+//		public static void main(String[] args) {
+//			UserMgr mgr = new UserMgr();
+//			mgr.user500();
+//			mgr.trainer9();
+//			mgr.company20();
+//			mgr.comUser20();
+//			mgr.payitem500();
+//			mgr.payitem20();
+//			mgr.trainerWork10();
+//			mgr.trainerWork10();
+//			mgr. Charge300();
+//			mgr. Charge200();
+//			mgr.Review200();
+//			mgr.reserve500();
+//			mgr.Qna200();
+//			System.out.println("입력성공");
+//		}
 
 		
 			
@@ -1552,7 +1552,7 @@ import java.util.Vector;
 		
 		
 		
-//		
+		//SQL에서 최초 한번만 실행		
 //		DELIMITER $$
 //		CREATE TRIGGER update_sellflag_trigger BEFORE INSERT ON healthitemsa
 //		FOR EACH ROW

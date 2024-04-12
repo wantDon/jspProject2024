@@ -1,7 +1,9 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@page import="hanSeungEun.LoginResult"%>
 <jsp:useBean id="uMgr" class="hanSeungEun.UserMgr" />
-
+<%
+	String adminPath = request.getContextPath() + "/project/adminMain.jsp";
+%>
 <%
     String id = request.getParameter("id");
     String pwd = request.getParameter("pwd");
@@ -22,7 +24,7 @@
             response.sendRedirect("../adminMain.jsp"); // 적절한 트레이너 페이지로 이동
         }else if (authority == 3) { // 권한이 3이면 관리자
             session.setAttribute("idKey", id);
-            response.sendRedirect("../adminMain.jsp"); // 적절한 트레이너 페이지로 이동
+            response.sendRedirect("../../project/adminMain.jsp"); // 적절한 트레이너 페이지로 이동
         }
     }
 %>

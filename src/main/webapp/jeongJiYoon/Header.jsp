@@ -1,16 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
-String id = (String)session.getAttribute("idKey");
-String homePath = request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
-String programPath = request.getContextPath() + "/jeongJiYoon/ProgramPage.jsp";
-String membershipPath = request.getContextPath() + "/hanSeungEun/membership/membership.jsp";
-String reviewPath = request.getContextPath() + "/jeongJiYoon/ReviewPage.jsp";
-String qnaPath = request.getContextPath() + "/jeongJiYoon/QnaPage.jsp";
-String imgPath = request.getContextPath() + "/jeongJiYoon/img/logo.png";
+	String id = (String)session.getAttribute("idKey");
+	String homePath = request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
+	String programPath = request.getContextPath() + "/jeongJiYoon/ProgramPage.jsp";
+	String membershipPath = request.getContextPath() + "/hanSeungEun/membership/membership.jsp";
+	String reviewPath = request.getContextPath() + "/jeongJiYoon/ReviewPage.jsp";
+	String qnaPath = request.getContextPath() + "/jeongJiYoon/QnaPage.jsp";
+	String imgPath = request.getContextPath() + "/jeongJiYoon/img/logo.png";
+	//System.out.print("*********************************");
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>헬스장 홈페이지</title>
@@ -35,20 +38,20 @@ String imgPath = request.getContextPath() + "/jeongJiYoon/img/logo.png";
         }	
 
         nav ul li {
-            margin:	0 50px; /* 각 메뉴 아이템 사이의 여백 조정 */
+            margin:	0 20px; /* 각 메뉴 아이템 사이의 여백 조정 */
         }
 
         nav ul li a {
             text-decoration: none;
             color: #333; /* 메뉴 텍스트 색상 */
-            font-size: 25px; /* 글자 크기 설정 */
+            font-size: 20px; /* 글자 크기 설정 */
             font-weight: bold; /* 굵은 글꼴 설정 */
         }
 
         .login a {
             background-color: #8B4513; /* 로그인 버튼 배경색 (갈색) */
             color: #fff; /* 로그인 버튼 텍스트 색상 */
-            padding: 10px 20px; /* 메뉴 간격 */
+            padding: 10px 25px; /* 메뉴 간격 */
             border-radius: 5px; /* 버튼 모서리 둥글게 */
             text-decoration: none;
             margin-right: 150px; /* 오른쪽 여백 추가 */
@@ -60,8 +63,8 @@ String imgPath = request.getContextPath() + "/jeongJiYoon/img/logo.png";
         }
 
         .logo img {
-            width: 350px; /* 로고 이미지 너비 설정 */
-            height: auto; /* 높이 자동으로 조정 */
+            width: 200px; /* 로고 이미지 너비 설정 */
+            height: 100px; /* 높이 자동으로 조정 */
             margin-left: 130px; /* 왼쪽 여백 추가 */
             cursor: pointer; /* 클릭 가능한 커서 설정 */
         }
@@ -179,6 +182,23 @@ String imgPath = request.getContextPath() + "/jeongJiYoon/img/logo.png";
 	        // 메뉴바가 닫힐 때 z-index를 초기값으로 설정하여 다른 요소 위에 가려지지 않도록 합니다.
 	        document.querySelector('.menu-collapse').style.zIndex = '1';
 	    });
+	</script>
+	
+	<!-- 네이버 로그인 -->
+		<script type="text/javascript">
+		var naver_id_login = new naver_id_login("3fXK1KDyGI_dypgwa3gs", "callbackURL.jsp");
+	  // 접근 토큰 값 출력
+	  //alert(naver_id_login.oauthParams.access_token);
+	  // 네이버 사용자 프로필 조회
+	  naver_id_login.get_naver_userprofile("naverSignInCallback()");
+	  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+	  function naverSignInCallback() {
+	    //alert(naver_id_login.getProfileData('email'));
+	    //alert(naver_id_login.getProfileData('nickname'));
+	    document.frm.email.value=naver_id_login.getProfileData('email');
+		document.frm.nickname.value=naver_id_login.getProfileData('nickname');
+		document.frm.submit();
+	  }
 	</script>
 </body>
 </html>
