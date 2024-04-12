@@ -25,35 +25,37 @@
     <input id="tab1" type="radio" name="tabs" checked>
     <label for="tab1">나의 예약 정보</label>
     <section id="content1">
-            <p>회원님의 예약정보입니다.</p>
-            <div class="revOut center" id="num">
-                <span class="span_font">회원번호</span>
-                <span class= "result"><%= result.getNum() %></span>
-            </div>
-            <div class="revOut center" id="name">
-                <span class="span_font">이름</span>
-                <span class= "result"><%= result.getName() %></span>
-            </div>
-            <div class="revOut center" id="phone">
-                <span class="span_font">전화번호</span>
-                <span class= "result"><%= result.getPhonenum() %></span>
-            </div>
-            <div class="revOut center" id="population">
-                <span class="span_font">예약인원</span>
-                <span class= "result"><%= result.getPopulation() %></span>
-            </div>
-            <div class="revOut center" id="frnum">
-                <span class="span_font">지점번호</span>
-                <span class= "result"><%= result.getFrnum() %></span>
-            </div>
-            <div class="revOut center" id="date">
-                <span class="span_font">날짜</span>
-                <span class= "result"><%= result.getReservdate() %></span>
-            </div>
-            <div class="revOut center" id="time">
-                <span class="span_font">시간</span>
-                <span class= "result"><%= result.getTime() %></span>
-            </div>
+            <p>{ <span><%= result.getName() %></span> } 회원님의 예약정보입니다.</p>
+            <table class="center">
+	            <tr>
+	                <th>회원번호</th>
+	                <td><%= result.getNum() %></td>
+	            </tr>
+		        <tr>
+		            <th>이름</th>
+		            <td><%= result.getName() %></td>
+		        </tr>
+		        <tr>
+		            <th>전화번호</th>
+		            <td><%= result.getPhonenum() %></td>
+		        </tr>
+		        <tr>
+		            <th>예약인원</th>
+		            <td><%= result.getPopulation() %></td>
+		        </tr>
+		        <tr>
+		            <th>지점번호</th>
+		            <td><%= result.getFrnum() %></td>
+		        </tr>
+		        <tr>
+		            <th>날짜</th>
+		            <td><%= result.getReservdate() %></td>
+		        </tr>   
+		        <tr>
+		            <th>시간</th>
+		            <td><%= result.getTime() %></td>
+		        </tr> 
+            </table>
             <button type="button" class="btn_ok center" onclick="window.location.href='reservation2.jsp'">확인</button>
     </section>
 </div>

@@ -73,7 +73,6 @@ input:checked + label {
 }
 
 .center {
-    /*가운데 정렬*/ 
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -98,3 +97,26 @@ p:nth-of-type(1) {
     border: solid 1px black;
    	text-align : center;
 }
+
+span {
+	font-size : 25px;
+}
+
+table, th, td {
+  border: solid 1px black;
+  border-collapse: collapse;
+}
+
+th {
+	width : 100px;
+	height : 30px;
+	background-color : #DBC7A5;
+}
+
+td {
+	width : 200px;
+	text-align : center;
+	height : 30px;
+}
+
+

@@ -59,15 +59,16 @@ public class ReservationMgr {
 				bean.setEmail(uBean.getEmail());
 				bean.setFrnum(uBean.getFrnum());
 			}
-			sql = "insert into reservation (name, pwd, phonenum, population, frnum, reservdate, time) values(?,?,?,?,?,?,?)";
+			sql = "insert into reservation (user, name, pwd, phonenum, population, frnum, reservdate, time) values(?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getName());
-			pstmt.setString(2, bean.getPwd());
-			pstmt.setString(3, bean.getPhonenum());
-			pstmt.setInt(4, bean.getPopulation());
-			pstmt.setInt(5, bean.getFrnum());
-			pstmt.setString(6, bean.getReservdate());
-			pstmt.setString(7, bean.getTime());
+			pstmt.setInt(1, bean.getUser());
+			pstmt.setString(2, bean.getName());
+			pstmt.setString(3, bean.getPwd());
+			pstmt.setString(4, bean.getPhonenum());
+			pstmt.setInt(5, bean.getPopulation());
+			pstmt.setInt(6, bean.getFrnum());
+			pstmt.setString(7, bean.getReservdate());
+			pstmt.setString(8, bean.getTime());
 			if (pstmt.executeUpdate() == 1)
 				flag = true;
 		} catch (Exception e) {
