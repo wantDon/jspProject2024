@@ -19,10 +19,10 @@
             response.sendRedirect("../../jeongJiYoon/HomePage.jsp"); // 적절한 관리자 페이지로 이동
         } else if (authority == 2) { // 권한이 2이면 트레이너
             session.setAttribute("idKey", id);
-            response.sendRedirect("../join.jsp"); // 적절한 트레이너 페이지로 이동
+            response.sendRedirect("../adminMain.jsp"); // 적절한 트레이너 페이지로 이동
         }else if (authority == 3) { // 권한이 3이면 관리자
             session.setAttribute("idKey", id);
-            response.sendRedirect("../reservation/reservation1.jsp"); // 적절한 트레이너 페이지로 이동
+            response.sendRedirect("../adminMain.jsp"); // 적절한 트레이너 페이지로 이동
         }
     }
 %>

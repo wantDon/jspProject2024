@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-String path=request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
+	String path=request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
 %>
       
 <html>
@@ -30,7 +30,7 @@ String path=request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
 	
 	                <div class="allcenter social_list">
 	                    <a href="javascript:void(0)" id="naverIdLogin_loginButton" class="social_list_1"><img src="../img/icon_naver.png" alt="네이버"></a>
-	                    <a href="href="javascript:void(0)" class="social_list_1"><img src="../img/icon_kakao.png" alt="카카오" onclick="kakaoLogin()"></a>
+	                    <a href="javascript:void(0)" class="social_list_1"><img src="../img/icon_kakao.png" alt="카카오" onclick="kakaoLogin()"></a>
 	                    <a href="#" class="social_list_1"><img src="../img/icon_google.png" alt="구글"></a>
 	                </div>
 	
