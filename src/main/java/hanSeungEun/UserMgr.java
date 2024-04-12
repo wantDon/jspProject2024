@@ -51,24 +51,41 @@ public class UserMgr {
 	
 	
 	//sns 로그인
-	public String snsLogin(String nickname, String email ) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-		try {
-			con = pool.getConnection();
-			sql = "insert into user (id, email) values(?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, nickname);
-			pstmt.setString(2, email);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			pool.freeConnection(con, pstmt);
-		}
-		return nickname;
+	public String snsLogin(String nickname, String email) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    try {
+	        con = pool.getConnection();
+	        // 사용자가 이미 존재하는지 확인하기 위해 SELECT 쿼리를 실행합니다.
+	        sql = "SELECT id FROM user WHERE id = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, nickname);
+	        rs = pstmt.executeQuery();
+	        
+	        // 이미 존재하는 사용자라면 바로 닉네임을 반환합니다.
+	        if(rs.next()) {
+	            return nickname;
+	        } else {
+	            // 존재하지 않는 사용자라면 새로운 레코드를 삽입합니다.
+	            sql = "INSERT INTO user (id, email) VALUES (?, ?)";
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setString(1, nickname);
+	            pstmt.setString(2, email);
+	            pstmt.executeUpdate();
+	            return nickname;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 자원을 해제합니다.
+	        pool.freeConnection(con, pstmt, rs);
+	    }
+	    // 오류가 발생한 경우에는 null을 반환합니다.
+	    return null;
 	}
+	
 	
 	//ID 중복확인
 		public boolean checkId(String id) {
