@@ -4,13 +4,15 @@
 %>
       
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
     <title>로그인</title>
-    
-    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
+
 <body class="allstyles">
     <div class="wrap vertical_center">
         <div class="logo_wrap">
@@ -43,84 +45,19 @@
     
     
     <!-- 네이버로그인 -->
-	<script>
-		var naverLogin = new naver.LoginWithNaverId(
-				{
-					clientId: "d5LTGWv1q9MJSH1J27mw", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-					callbackUrl: "http://localhost/teamProject_jsp/jeongJiYoon/HomePage.jsp", 
-					// 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
-					isPopup: false,
-					callbackHandle: true
-				}
-			);	
+	<script type="text/javascript">
+  	var naver_id_login = new naver_id_login("3fXK1KDyGI_dypgwa3gs", "http://localhost/myapp/naverLogin/callbackURL.jsp");
+  	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("white", 2,40);
+  	naver_id_login.setDomain("http://localhost/myapp/naverLogin/login.jsp");
+  	naver_id_login.setState(state);
+  	//naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
+  	
+  	// 네이버 접근 토큰 삭제 요청
+	//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=d5LTGWv1q9MJSH1J27mw&client_secret=36CqL7njdb&access_token=AAAAOXxzzaM4J02mVMleplPUzENeNiEcB58TxTJb-v6Hi4BCuzIXrN6-Af5yo_cWTTEYcRZRyhlx8NhTi_ij2NxDJrI&service_provider=NAVER
+  </script>
 		
-		naverLogin.init();
-		
-		window.addEventListener('load', function () {
-			naverLogin.getLoginStatus(function (status) {
-				if (status) {
-					var id = naverLogin.user.getId();
-					var name = naverLogin.user.getName();
-					var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
-					
-					console.log(naverLogin.user); 
-		    		
-					if( id == undefined || id == null) {
-						alert("아이디는 필수정보입니다. 정보제공을 동의해주세요.");
-						naverLogin.reprompt();
-						return;
-					}
-					if( name == undefined || name == null) {
-						alert("이름은 필수정보입니다. 정보제공을 동의해주세요.");
-						naverLogin.reprompt();
-						return;
-					}
-					if( email == undefined || email == null) {
-						alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-						naverLogin.reprompt();
-						return;
-					}
-					if( mobile == undefined || mobile == null) {
-						alert("휴대번호는 필수정보입니다. 정보제공을 동의해주세요.");
-						naverLogin.reprompt();
-						return;
-					}
-					if( gender == undefined || gender == null) {
-						alert("성별은 필수정보입니다. 정보제공을 동의해주세요.");
-						naverLogin.reprompt();
-						return;
-					}
-					if( birthday == undefined || birthday == null) {
-						alert("생일은 필수정보입니다. 정보제공을 동의해주세요.");
-						naverLogin.reprompt();
-						return;
-					}
-					if( birthyear == undefined || birthyear == null) {
-						alert("생일은 필수정보입니다. 정보제공을 동의해주세요.");
-						naverLogin.reprompt();
-						return;
-					}
-				} else {
-					console.log("callback 처리에 실패하였습니다.");
-				}
-			});
-		});		
-		
-		var testPopUp;
-		function openPopUp() {
-		    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
-		}
-		function closePopUp(){
-		    testPopUp.close();
-		}		
-		function naverLogout() {
-			openPopUp();
-			setTimeout(function() {
-				closePopUp();
-				}, 1000);		
-		}
-		//접근 토큰 삭제 요청
-		//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=d5LTGWv1q9MJSH1J27mw&client_secret=36CqL7njdb&access_token=AAAAOXxzzaM4J02mVMleplPUzENeNiEcB58TxTJb-v6Hi4BCuzIXrN6-Af5yo_cWTTEYcRZRyhlx8NhTi_ij2NxDJrI&service_provider=NAVER
-	</script>
+
 </body>
 </html>
