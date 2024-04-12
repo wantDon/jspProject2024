@@ -18,12 +18,91 @@
 	            height: 100%; /* body와 html 요소의 높이를 100%로 설정 */
 	        }
 	        
-	        /* Review 텍스트 */
-	        .text1 {
-	        	font-weight: bold;
-	            text-align: center; /* 텍스트를 가운데 정렬 */
-	            font-size: 50px; /* 글자 크기 설정 */
+	        .allcenter {
+			    /*가운데 정렬*/
+			    display: block;  
+			    margin-left: auto;
+			    margin-right: auto;
+			}
+			
+			
+	        
+	        
+	        
+	        /*콘텐츠 헤더 이미지 및 리뷰 이벤트 알림 텍스트****************/
+	        .main_bg{
+				position: relative;
+			    width: 100%;
+			    height: 500px;
+			    z-index: 1; /*순번*/
+			    
 	        }
+	        
+	        /*배경 투명도를 위한 가상 요소*/
+			.main_bg::after {
+			    position: absolute;
+			    content: "";
+			    width: 100%;
+			    height: 100%;
+			    background-image: url(img/UI-UW-05.jpg);
+			    background-position: center; /*이미지는 기본적으로 왼쪽부터 채우며, 어디서부터 채울지 정할 때*/
+			    top: 0;  /*가상요소가 원본의 전체를 차지*/
+			    left: 0; /*가상요소가 원본의 전체를 차지*/
+			    opacity: 0.6; /*이미지 투명하게*/
+			    z-index: -1; /*순번*/
+			}
+			/*리뷰이벤트 소개 박스*/
+			.rv_introduce {
+			    position: relative;
+			    text-align: center;
+			    width: 32vw;
+			    height: 220px;
+			    background-color: white;
+			    margin: auto;
+			    top: 350px;
+			    box-shadow: 0px 5px 4px #d8d7d7;
+			    padding-top: 25px;
+			    box-sizing: border-box;
+			    min-width: 530px;
+			}
+			
+			.rv_title {
+			    font-size: 40px;
+			    font-weight: 700;
+			    margin: 0;
+			}
+
+			.rv_text {
+			    line-height: 30px;
+				font-size: 1.1rem;
+				margin-top: 50px;
+			}
+			
+			
+			/* Review 텍스트 div */
+			.rv_title_wrap {
+			    width: 20%;
+			    height: auto;
+			    margin-top: 200px;
+			    text-align: center; 
+			}
+			
+			/*폰트 사이즈*/
+			.rv_text_1 {
+			    font-size: 2rem;
+			    margin: 0;
+			}
+			
+			/*리뷰 텍스트 밑줄*/
+			.line {
+			    width: 15%;
+			    height: 5px;
+			    margin-top: 10px;
+			    background-color: #EBDAC3;
+			}
+			/*********************************************/
+	        
+	       
 	        
 	        /* Event 텍스트 */
 	        .text2 {
@@ -93,25 +172,21 @@
 	
 	<body>
 		<!-- 이미지를 화면 중앙에 표시하는 부분 -->
-	    <div class="centered-image">
-	        <img src="img/UI-UW-05.jpg" alt="UI-UW-05">
-	        <div class="overlay-box">
-	        	<div class="text2">
-	        		Event
-	            <div class="overlay-text">
-	                한달에 한번 추첨을 통해 리뷰를 작성해주신 회원 5분께<br>
-	                PT 1회 무료 체험권을 드리오니<br>
+		<div class="main_bg">
+			<div class="rv_introduce">
+				<p class="rv_title">Event</p>
+				<p class="rv_text">
+					한달에 한번 추첨을 통해 리뷰를 작성해주신 회원 5분께 PT 1회<br>무료 체험권을 드리오니
 	                많은 참여 부탁드립니다.
-	            </div>
-	            </div>
-	        </div>
-	    </div>
+				</p>
+			</div><!--res_introduce-->
+		</div><!--main_bg-->
 	    
 	    <!-- Review 텍스트 -->
-	    <div class="text1">
-	        Review
-	    </div>
-	    <div class="divider1"></div>
+	    <div class="allcenter rv_title_wrap">
+			<p class="rv_text_1">Review</p>
+			<div class="allcenter line"></div>
+		</div><!--rv_title_wrap-->
 	    
 	    <!-- "글쓰기" 버튼 -->
 		<div style="position: relative; text-align: center; margin-left: 1000px; margin-bottom: -40px;">

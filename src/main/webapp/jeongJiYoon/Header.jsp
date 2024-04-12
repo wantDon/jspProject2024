@@ -187,20 +187,20 @@
 	</script>
 	
 	<!-- 네이버 로그인 -->
-		<script type="text/javascript">
-		var naver_id_login = new naver_id_login("3fXK1KDyGI_dypgwa3gs", "http://localhost/teamProject_jsp/jeongJiYoon/Header.jsp");
-	  // 접근 토큰 값 출력
-	  //alert(naver_id_login.oauthParams.access_token);
-	  // 네이버 사용자 프로필 조회
-	  naver_id_login.get_naver_userprofile("naverSignInCallback()");
-	  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-	  function naverSignInCallback() {
-	    //alert(naver_id_login.getProfileData('email'));
-	    //alert(naver_id_login.getProfileData('nickname'));
-	    document.frm.email.value=naver_id_login.getProfileData('email');
-		document.frm.nickname.value=naver_id_login.getProfileData('nickname');
-		document.frm.submit();
-	  }
+	<script type="text/javascript">
+			var naver_id_login = new naver_id_login("3fXK1KDyGI_dypgwa3gs", "http://localhost/teamProject_jsp/jeongJiYoon/Header.jsp");
+		  // 접근 토큰 값 출력
+		  //alert(naver_id_login.oauthParams.access_token);
+		  // 네이버 사용자 프로필 조회
+		  naver_id_login.get_naver_userprofile("naverSignInCallback()");
+		  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+		  function naverSignInCallback() {
+		    //alert(naver_id_login.getProfileData('email'));
+		    //alert(naver_id_login.getProfileData('nickname'));
+		    document.frm.email.value=naver_id_login.getProfileData('email');
+			document.frm.nickname.value=naver_id_login.getProfileData('nickname');
+			document.frm.submit();
+		  }
 	</script>
 	
 	<!-- snsLoginProc 서버 스크립트로 이메일과 닉네임을 전송하기
