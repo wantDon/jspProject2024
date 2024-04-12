@@ -27,37 +27,32 @@
                 
 	                <a href="findIdPw.jsp" class="find_text">아이디/비번찾기</a>
 	                <div style="clear: both;"></div>
-	
+					<input type = "submit" class="allcenter btn_login" value = "로그인">
+					<button class="allcenter btn_join" onclick="window.location.href='../join.jsp'">회원가입</button>
+	                
+	            
 	                <p class="social_text">개인정보 보호를 위해 공용 PC에서 사용 후 SNS 계정의 로그아웃 상태를 반드시 확인해주세요.</p>
-	
-	                <div class="allcenter social_list">
-	                    <a href="javascript:void(0)" id="naverIdLogin_loginButton" class="social_list_1"><img src="../img/icon_naver.png" alt="네이버"></a>
-	                    <a href="javascript:void(0)" class="social_list_1"><img src="../img/icon_kakao.png" alt="카카오" onclick="kakaoLogin()"></a>
-	                    <a href="#" class="social_list_1"><img src="../img/icon_google.png" alt="구글"></a>
-	                </div>
-	
-	                <input type = "submit" class="allcenter btn_login" value = "로그인">
-	                <div style="margin-top: 5px;"><a href="../join.jsp" class="text_link">회원가입</a></div>
-                </form>
+	            </form>
+	                
+	                
+	                <!-- 네이버로그인 -->
+				    <div id="naver_id_login"></div>
+				    <script>
+					var naver_id_login = new naver_id_login("3fXK1KDyGI_dypgwa3gs", "http://localhost/teamProject_jsp/jeongJiYoon/Header.jsp");
+				  	var state = naver_id_login.getUniqState();
+				  	naver_id_login.setButton("green", 3,50);
+				  	naver_id_login.setDomain("http://localhost/teamProject_jsp/hanSeungEun/login/login.jsp");
+				  	naver_id_login.setState(state);
+				  	//naver_id_login.setPopup();
+				  	naver_id_login.init_naver_id_login();
+				  	
+				  	// 네이버 접근 토큰 삭제 요청
+					//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=d5LTGWv1q9MJSH1J27mw&client_secret=36CqL7njdb&access_token=AAAAOXxzzaM4J02mVMleplPUzENeNiEcB58TxTJb-v6Hi4BCuzIXrN6-Af5yo_cWTTEYcRZRyhlx8NhTi_ij2NxDJrI&service_provider=NAVER
+				  </script>
+
             </div><!--login_wrap-->
         </div><!--input_wrap-->
     </div><!--wrap-->
     
-    
-    <!-- 네이버로그인 -->
-	<script type="text/javascript">
-  	var naver_id_login = new naver_id_login("3fXK1KDyGI_dypgwa3gs", "http://localhost/myapp/naverLogin/callbackURL.jsp");
-  	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("white", 2,40);
-  	naver_id_login.setDomain("http://localhost/myapp/naverLogin/login.jsp");
-  	naver_id_login.setState(state);
-  	//naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login();
-  	
-  	// 네이버 접근 토큰 삭제 요청
-	//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=d5LTGWv1q9MJSH1J27mw&client_secret=36CqL7njdb&access_token=AAAAOXxzzaM4J02mVMleplPUzENeNiEcB58TxTJb-v6Hi4BCuzIXrN6-Af5yo_cWTTEYcRZRyhlx8NhTi_ij2NxDJrI&service_provider=NAVER
-  </script>
-		
-
 </body>
 </html>

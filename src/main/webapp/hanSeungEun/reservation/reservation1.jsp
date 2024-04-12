@@ -4,7 +4,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <jsp:useBean id="rMgr" class="hanSeungEun.ReservationMgr" />
-<jsp:useBean id="uMgr" class="hanSeungEun.UserMgr" />
+
 
 <%
 request.setCharacterEncoding("utf-8");
