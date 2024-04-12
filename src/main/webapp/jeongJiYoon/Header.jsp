@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<jsp:useBean id="uMgr" class="hanSeungEun.UserMgr" />
 <%
 	String id = (String)session.getAttribute("idKey");
 	String homePath = request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
@@ -7,6 +8,7 @@
 	String reviewPath = request.getContextPath() + "/jeongJiYoon/ReviewPage.jsp";
 	String qnaPath = request.getContextPath() + "/jeongJiYoon/QnaPage.jsp";
 	String imgPath = request.getContextPath() + "/jeongJiYoon/img/logo.png";
+	String Path = request.getContextPath() + "/hanSeungEun/login/snsLoginProc.jsp";
 	//System.out.print("*********************************");
 %>
 <!DOCTYPE html>
@@ -186,7 +188,7 @@
 	
 	<!-- 네이버 로그인 -->
 		<script type="text/javascript">
-		var naver_id_login = new naver_id_login("3fXK1KDyGI_dypgwa3gs", "callbackURL.jsp");
+		var naver_id_login = new naver_id_login("3fXK1KDyGI_dypgwa3gs", "http://localhost/teamProject_jsp/jeongJiYoon/Header.jsp");
 	  // 접근 토큰 값 출력
 	  //alert(naver_id_login.oauthParams.access_token);
 	  // 네이버 사용자 프로필 조회
@@ -200,5 +202,12 @@
 		document.frm.submit();
 	  }
 	</script>
+	
+	<!-- snsLoginProc 서버 스크립트로 이메일과 닉네임을 전송하기
+		 위해 폼을 생성한다. -->
+	<form name="frm" action="<%=Path%>">
+		<input type="hidden" name="email">
+		<input type="hidden" name="nickname">
+	</form>
 </body>
 </html>

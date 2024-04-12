@@ -169,6 +169,7 @@
     font-size: 14px;
 }
 
+
 .right_cnt {
     width: 26%;
     height: auto;
@@ -203,6 +204,7 @@
 
 .btn_rev:hover {
 	cursor: pointer;
+	background-color: #615243;
 }
 
 
@@ -219,6 +221,7 @@
 
 .btn_scRev:hover {
 	cursor: pointer;
+	background-color: #ECEBEB;
 }
 
 #selectDate, #selectTime {

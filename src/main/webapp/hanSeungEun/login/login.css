@@ -99,6 +99,7 @@
 .social_text {
     font-size: 0.9rem;
     margin-top: 60px;
+    margin-bottom: 20px;
 }
 
 
@@ -112,7 +113,30 @@
     border: solid 1px #615243;
     font-size: 1.1rem;
     font-weight: bold;
+    margin-top: 50px;
+}
+
+.btn_login:hover {
+	cursor: pointer;
+	background-color: #615243;
+}
+
+.btn_join{
+    display: block;
+    width: 95%;
+    height: 50px;
+    background-color: white;
+    border-radius: 5px;
+    border: solid 1px #615243;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
     margin-bottom: 20px;
+}
+
+.btn_join:hover {
+	cursor: pointer;
+	background-color: #ECEBEB;
 }
 
 .text_link {

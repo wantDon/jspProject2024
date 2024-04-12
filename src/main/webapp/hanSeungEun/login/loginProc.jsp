@@ -2,9 +2,6 @@
 <%@page import="hanSeungEun.LoginResult"%>
 <jsp:useBean id="uMgr" class="hanSeungEun.UserMgr" />
 <%
-	String adminPath = request.getContextPath() + "/project/adminMain.jsp";
-%>
-<%
     String id = request.getParameter("id");
     String pwd = request.getParameter("pwd");
     LoginResult loginResult = uMgr.loginMember(id, pwd);

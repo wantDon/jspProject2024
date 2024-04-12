@@ -50,6 +50,26 @@ public class UserMgr {
 	}
 	
 	
+	//sns 로그인
+	public String snsLogin(String nickname, String email ) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			con = pool.getConnection();
+			sql = "insert into user (id, email) values(?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nickname);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return nickname;
+	}
+	
 	//ID 중복확인
 		public boolean checkId(String id) {
 			Connection con = null;

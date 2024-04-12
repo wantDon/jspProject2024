@@ -40,17 +40,12 @@ label {
     border: 1px solid transparent;}
     
 
-label:hover {
-    color: #615243;
-    cursor: pointer;}
-
 button:hover {
-    color: #615243;
+    background-color: #615243;
     cursor: pointer;}
     
-   
 #btn_ok:hover {
-    color: #615243;
+    background-color: #ECEBEB;
     cursor: pointer;}    
 
 /*input 클릭시, label 스타일*/
@@ -188,6 +183,7 @@ p:nth-of-type(1) {
 
 #btn_ok1:hover {
 	cursor: pointer;
+	background-color: #ECEBEB;
 }
 
 /*예약조회-예약번호 찾기 버튼*/
@@ -223,6 +219,10 @@ p:nth-of-type(1) {
     border: solid 1px black;
 }
 
+.btn_rev:hover {
+	cursor: pointer;
+	background-color: #ECEBEB;
+}
 
 
 
