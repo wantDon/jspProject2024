@@ -39,7 +39,6 @@
                 <input placeholder="19900101" name="birth">
                 <label>이메일</label>
                 <input placeholder="이메일" name="email">
-                <button>인증</button>
                 <label>휴대번호</label>
                 <input placeholder="'-'빼고 입력" name="phone">
             </div>
