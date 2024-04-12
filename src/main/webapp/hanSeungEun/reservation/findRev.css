@@ -186,6 +186,10 @@ p:nth-of-type(1) {
     text-align: center;
 }
 
+#btn_ok1:hover {
+	cursor: pointer;
+}
+
 /*예약조회-예약번호 찾기 버튼*/
 .btn_scRev{
 	width: 130px;

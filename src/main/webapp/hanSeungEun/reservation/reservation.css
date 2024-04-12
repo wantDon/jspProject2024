@@ -22,6 +22,7 @@
     z-index: 1; /*순번*/
 }
 
+
 /*배경 투명도를 위한 가상 요소*/
 .main_bg::after {
     position: absolute;
@@ -200,6 +201,11 @@
     margin-top: 30px;
 }
 
+.btn_rev:hover {
+	cursor: pointer;
+}
+
+
 .btn_scRev{
 	width: 150px;
     height: 40px;
@@ -209,6 +215,10 @@
     font-size: 15px;
     text-align: center;
     margin-top: 10px;
+}
+
+.btn_scRev:hover {
+	cursor: pointer;
 }
 
 #selectDate, #selectTime {
@@ -273,6 +283,10 @@
     font-size: 15px;
     text-align: center;
     margin-top: 45px;
+}
+
+.btn_rev1:hover {
+	cursor: pointer;
 }
 
 
