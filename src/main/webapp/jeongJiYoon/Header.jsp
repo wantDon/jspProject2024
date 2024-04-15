@@ -50,7 +50,7 @@
             font-weight: bold; /* 굵은 글꼴 설정 */
         }
 
-        .login a {
+        .login {
             background-color: #8B4513; /* 로그인 버튼 배경색 (갈색) */
             color: #fff; /* 로그인 버튼 텍스트 색상 */
             padding: 10px 25px; /* 메뉴 간격 */
@@ -155,18 +155,16 @@
                     <li><a href="<%=log1%>">Reservation</a></li>
                     <li><a href="<%=membershipPath%>">Membership</a></li>
                     <li><a href="<%=reviewPath%>">Review</a></li>
-                    <li><a href="<%=qnaPath%>">Q&A</a></li>
+                    <li><a href="<%=qnaPath%>" style="margin-right:30px;">Q&A</a></li>
                     <%
 						String log="";
-						if(id == null) log ="<a href=" + request.getContextPath() + "/hanSeungEun/login/login.jsp>" + "로그인</a>";
-						else log = "<a href=" + request.getContextPath() + "/hanSeungEun/login/logout.jsp>" + "로그아웃</a>";
+						if(id == null) log ="<a href=" + request.getContextPath() + "/hanSeungEun/login/login.jsp class='login'>" + "로그인</a>";
+						else log = "<li><a href=" + request.getContextPath() + "/hanSeungEun/login/login.jsp  style='margin-left:200px'>" + id + "님</a></li>" +
+						"<a href=" + request.getContextPath() + "/hanSeungEun/login/logout.jsp class='login'>" + "로그아웃</a>";
 					%>
-					<li >
-                     	 <a href="#"><%=id%>님</a> 
-                    </li>
-                    <li class="login">
-                     	   <%=log%>
-                    </li>
+					
+					<!-- 로그인된 아이디 출력 -->
+                    <%=log%>    
                 </ul> 
             </div>
         </nav>
