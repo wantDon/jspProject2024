@@ -161,7 +161,7 @@ public class UserMgr {
 	        return userId;
 	    }
 		
-	
+		
 		//회원정보 가져오기
 		public UserBean getMember(String id) {
 			Connection con = null;

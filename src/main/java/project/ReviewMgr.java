@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
-import ch15.BoardBean;
 
 public class ReviewMgr {
 	private DBConnectionMgr pool;

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
 	String path=request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
+	String joinPath=request.getContextPath() + "/hanSeungEun/join.jsp";	
 %>
       
 <html>
@@ -25,14 +26,15 @@
                     <input type="text" name="id" class="login_box" placeholder="아이디" style="width:99%">
                     <input type="password" name="pwd" class="border_radius_1 login_box"  placeholder="비밀번호" style="width:99%">
                 
-	                <a href="findIdPw.jsp" class="find_text">아이디/비번찾기</a>
+	                <a href="findId.jsp" class="find_text">아이디/비번찾기</a>
 	                <div style="clear: both;"></div>
 					<input type = "submit" class="allcenter btn_login" value = "로그인">
-					<button class="allcenter btn_join" onclick="window.location.href='../join.jsp'">회원가입</button>
+				</form>
+					<button class="allcenter btn_join" onclick="window.location.href = '<%=joinPath%>'">회원가입</button>
 	                
 	            
 	                <p class="social_text">개인정보 보호를 위해 공용 PC에서 사용 후 SNS 계정의 로그아웃 상태를 반드시 확인해주세요.</p>
-	            </form>
+	            
 	                
 	                
 	                <!-- 네이버로그인 -->
