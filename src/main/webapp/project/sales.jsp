@@ -1,5 +1,6 @@
 <!-- sales.jsp -->
 
+<%@page import="java.time.LocalDate"%>
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@page import = "project.LocationBean" %>
 <%@page import="project.UserBean"%>
@@ -64,6 +65,10 @@
 			//현재 블럭
 			
 			nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock);
+			
+			
+			
+			int currentYear = LocalDate.now().getYear();
 %>
 
 <%@include file = "adminHeader.jsp"%>
@@ -235,7 +240,7 @@
 					 
 				<div id="layoutSidenav_content">
 		<main>
-					<h1 class="mt-4  dongle-title">&nbsp;&nbsp;  월간 매출 현황 </h1>
+					<h1 class="mt-4  dongle-title">&nbsp;&nbsp;  <%=currentYear%>년 월간 매출 현황 </h1>
 					<hr>
 	    	<canvas id="myAreaChart" width="100%" height="30"></canvas>
 					<script>

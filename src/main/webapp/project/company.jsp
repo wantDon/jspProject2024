@@ -15,7 +15,7 @@
 						String tr6 = "";   // 회사 정보
 
 						String comnum1 = ""; // 회사 번호
-									
+						int comuser = 0; //회사원 수
 			
 						Vector<LocationBean> lvlist = new Vector<LocationBean>();
 						lvlist = lMgr.getLocaName();
@@ -46,6 +46,7 @@
 							keyField = request.getParameter("keyField");
 							keyWord = request.getParameter("keyWord");
 						}	
+						
 						
 						totalRecord = uMgr.getTotalCompany(keyField, keyWord);
 						
@@ -467,7 +468,7 @@
                                             <th>회사명</th>
                                             <th>우편 번호</th>
                                             <th> 주소</th>
-                                            <th>회사에 속한 고객 수</th>
+                                            <th>회사에 속한 고객수</th>
                                             <th>회사 전화번호</th>
                                             <th>회사 정보</th>
                                             <th>관리</th>
@@ -494,9 +495,9 @@
 												if(i == listSize) break;
 												
 												CompanyBean cBean = cvlist.get(i);
-
 												
-
+												
+												comuser = uMgr.getComUserCount(cBean.getNum());
 											    
 												
 										%>	
@@ -505,7 +506,7 @@
                                             <td> <%=cBean.getId()%></td>
                                             <td><%=cBean.getPostnum()%></td>
                                             <td><%=cBean.getCity() + " " + cBean.getStreetaddr()%></td>
-                                            <td><%=cBean.getSize()%></td>
+                                            <td><%=comuser%></td>
                                             <td><%=cBean.getCallnum()%></td>
                                             <td><%=cBean.getCompanyinfo()%></td>
                                             <td>
