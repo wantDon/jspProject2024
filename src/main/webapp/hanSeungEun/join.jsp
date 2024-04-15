@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+<%
+	String imgPath=request.getContextPath() + "/hanSeungEun/img/logo.png";
+	String Path=request.getContextPath() + "/jeongJiYoon/HomePage.jsp";
+%>
 <!doctype html>
 <html>
 <head>
@@ -14,7 +17,7 @@
 <body class="allstyles vertical_center" onLoad="joinFrm.id.focus()">
     <div class="wrap center ">
         <div class="logo_wrap">
-            <a href="index.jsp"><img src="img/logo.png" alt="로고" class="img_logo"></a>
+            <a href="<%=Path%>"><img src="<%=imgPath%>" alt="로고" class="img_logo"></a>
         </div><!--logo_wrap-->
        <form name="joinFrm" method="post" action="userProc.jsp">
             <div class="inner center">
