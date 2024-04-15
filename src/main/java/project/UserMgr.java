@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.Vector;
 
+import ch15.BoardBean;
+import ch15.BoardMgr;
+
 
 
 		public class UserMgr {
@@ -1064,6 +1067,30 @@ import java.util.Vector;
 				}
 				
 				
+				//속한 회사의 고객수 
+				public int getComUserCount(int com) {
+					Connection con = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					String sql = null;
+					int num = 0;
+					try {
+						con = pool.getConnection();
+						sql = "select count(*) from usersa where company = ? ";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1,com);
+						rs = pstmt.executeQuery();
+						while(rs.next()) {
+							num = rs.getInt(1);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						pool.freeConnection(con, pstmt, rs);
+					}
+					return num;
+				}
+				
 				
 //------------------------------상품 등록 ---------------------------------
 				
@@ -1334,6 +1361,27 @@ import java.util.Vector;
 			}
 		}
 		
+		//회사유저 10개
+		public void comUser10(){
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				con = pool.getConnection();
+				sql = "insert usersa(id,pwd,name,gender,birth,email,postnum,city,streetaddr,joindate,point,sns,snsid,snspwd,authority,company,frnum,phone)";
+				sql+="values(CONCAT('userc',?), 'uc', 'uc', 3, '2033-03-03', 'cu@CU.com', 3333, '3','3', now(), 3000, 0,null,null,0,16,1,'010-3333-3333');";
+				pstmt = con.prepareStatement(sql);
+				for (int i = 0; i < 10; i++) {
+					pstmt.setInt(1,i);
+					pstmt.executeUpdate();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt);
+			}
+		}
+		
 		
 		// 유저 가입상품 500개
 		
@@ -1357,8 +1405,8 @@ import java.util.Vector;
 			}
 		}
 		
-		//외상 가입상품 20개
-		public void payitem20(){
+		//외상 가입상품 30개
+		public void payitem30(){
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
@@ -1367,7 +1415,7 @@ import java.util.Vector;
 				sql = "insert payitemsa(usernum, paydate, itemnum, payprice, paymethod, payflag, ccflag, payback)";
 				sql+="values(?, now(), 1, 50000, '외상',0,0,0);";
 				pstmt = con.prepareStatement(sql);
-				for (int i = 502; i < 522; i++) {
+				for (int i = 502; i < 532; i++) {
 					pstmt.setInt(1,i);
 					pstmt.executeUpdate();
 				}
@@ -1525,13 +1573,14 @@ import java.util.Vector;
 		}
 		
 		
-		//최초 한번만 실행
+//		
 //		public static void main(String[] args) {
 //			UserMgr mgr = new UserMgr();
 //			mgr.user500();
 //			mgr.trainer9();
 //			mgr.company20();
-//			mgr.comUser20();
+//			mgr.comUser30();
+//			mgr.comUser10();
 //			mgr.payitem500();
 //			mgr.payitem20();
 //			mgr.trainerWork10();
@@ -1543,8 +1592,8 @@ import java.util.Vector;
 //			mgr.Qna200();
 //			System.out.println("입력성공");
 //		}
-
-		
+//
+//		
 			
 }
 
@@ -1552,7 +1601,7 @@ import java.util.Vector;
 		
 		
 		
-		//SQL에서 최초 한번만 실행		
+//		
 //		DELIMITER $$
 //		CREATE TRIGGER update_sellflag_trigger BEFORE INSERT ON healthitemsa
 //		FOR EACH ROW

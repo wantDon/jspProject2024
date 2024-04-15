@@ -247,7 +247,7 @@
                     </tr>
                     <!-- ----글내용 적는곳 -->
                     <tr> 
-                        <td colspan="4"><br/><pre style="font-family: Dongle, sans-serif;"><%=content%></pre><br/></td>
+                        <td colspan="4"><br/><pre style="font-family: Dongle, sans-serif; font-size: 34px;"><%=content%></pre><br/></td>
                     </tr>
                     <tr>
                         <td align="center" colspan="4">

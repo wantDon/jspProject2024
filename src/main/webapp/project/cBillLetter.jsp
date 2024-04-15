@@ -38,7 +38,7 @@
 			}
 			
 			int totalRecord = 0; // 총 게시물수
-			int numPerPage = 10; // 페이지당 레코드 개수 (5,10,20,30)
+			int numPerPage = 20; // 페이지당 레코드 개수 (5,10,20,30)
 			int pagePerBlock = 5; //블럭당 페이지 개수
 			int totalPage = 0; //총 페이지 개수
 			int totalBlock = 0; // 총 블럭 개수
@@ -120,7 +120,52 @@
 						document.readnumFrm.nowPage.value = <%=pagePerBlock%>*(block-1)+1;
 						document.readnumFrm.submit();
 					}
-    
+					
+					
+				      document.addEventListener('DOMContentLoaded', function() {
+					
+								// 엑셀 파일로 내보내기 함수 
+								function exportTableToExcel(tableId, filename = 'exported_table.xlsx') { 
+									const wb = XLSX.utils.book_new(); // 테이블 데이터 가져오기 
+									
+									const wsData = [[]]; 
+									const table = document.getElementById(tableId); 
+									const rows = table.querySelectorAll('tr');
+									
+									// 각 행을 순회하면서 데이터 추출
+									rows.forEach(row => { 
+										const rowData = []; 
+										row.querySelectorAll('td').forEach(cell => { 
+											rowData.push(cell.innerText); 
+											}); 
+										wsData.push(rowData); 
+										});
+									
+									// 테이블 데이터를 시트로 추가 
+										const ws = XLSX.utils.aoa_to_sheet(wsData); 
+										XLSX.utils.book_append_sheet(wb, ws, 'Sheet1'); 
+										
+										// 엑셀 파일 생성 
+										const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+										
+										// 파일 내보내기 
+										saveAs(new Blob([s2ab(wbout)], { type: 'application/octet-stream' }), filename); }
+								
+										// 이진 데이터로 변환하는 함수 
+										function s2ab(s) { 
+											const buf = new ArrayBuffer(s.length); 
+											const view = new Uint8Array(buf); 
+											for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; 
+											return buf; 
+											}
+										
+										// 엑셀 내보내기 버튼 클릭 시 호출되는 함수 
+											document.getElementById('excelDownload').addEventListener('click', function() { 
+										exportTableToExcel('datatable2', 'billLetter.xlsx'); 
+										});								
+							      });
+				      
+				      
     </script>
     
     <style>
@@ -213,7 +258,8 @@
 									
 									.search-button,
 									.register-button,
-									.refresh-btn {
+									.refresh-btn,
+									.down-btn {
 									    background-color: #4CAF50;
 									    color: white;
 									    border: none;
@@ -280,7 +326,14 @@
 									    margin: 0 3px;
 									    color: #666;
 									}
+									
+									.down-btn {
+									    background-color: #0d6efd; /* 회원 등록 버튼의 배경색 조정 */
+									}
     
+									.down-btn:hover {
+									    background-color: #0a58ca;
+									}
     	
     
     
@@ -309,6 +362,7 @@
 									    </div>
 									    <button type="button" class="search-button" onClick="check()">검색</button>
 									    <a href = "cBillLetter.jsp" class = "refresh-btn">새로 고침</a>
+										 <button id ="excelDownload" class="down-btn">액셀 파일 다운로드</button>
 									    <input type="hidden" name="nowPage" value="1">
 									</form>
 									</div>	
@@ -352,6 +406,7 @@
 										        fr = cMgr.getLocToUseItemNum(pBean.getItemnum());
 										        item = cMgr.getItemNameByUserNum(pBean.getUsernum());
 										        company = cMgr.getCompany(pBean.getUsernum());
+												numPerPage = uMgr.getComUserCount(company);
 										        company1 = uMgr.getComName(company);
 										%>	
 										<tr>
@@ -425,6 +480,10 @@
 	<input type="hidden" name="keyWord" value="<%=keyWord%>">
 	<input type="hidden" name="num" >
 </form>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
  <%@ include file="adminFooter.jsp" %>
 </div>
             
