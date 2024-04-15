@@ -7,8 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.Vector;
 
-import ch15.BoardBean;
-import ch15.BoardMgr;
+
 
 
 
